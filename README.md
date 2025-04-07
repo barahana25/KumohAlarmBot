@@ -1,14 +1,14 @@
 # Kumoh alarm
 
-이 봇은 금오공대 관련 공지사항이 매번 확인하기 귀찮아서 만든 봇이다.
+본 repository는 컴퓨터공학과 소프트웨어전공 22학번인 안재범 선배님의 디스코드봇 알리미를 fork하였습니다. (https://github.com/ajb3296/Kumoh-alarm)
 
 ## 봇 초대
 
-https://discord.com/api/oauth2/authorize?client_id=950607518252556328&permissions=414464789568&scope=bot%20applications.commands
+https://discord.com/oauth2/authorize?client_id=1358754351262208021&permissions=1689384584214592&integration_type=0&scope=bot
 
 ### 디스코드 서버
 
-https://discord.gg/mcvEwsg4AB
+https://discord.gg/65qwcUXS
 
 ## How to install
 1. bot 폴더 안에 config.py 파일을 만든다.
