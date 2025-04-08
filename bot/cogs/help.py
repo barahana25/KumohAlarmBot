@@ -8,7 +8,6 @@ class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    # @option("help_option", description="알고 싶은 메뉴를 선택하세요", choices=["GENERAL", "ALARM"])
     @app_commands.command(name="help", description="도움말을 보여줍니다.")
     @app_commands.describe(help_option="알고 싶은 메뉴를 선택하세요")
     @app_commands.choices(

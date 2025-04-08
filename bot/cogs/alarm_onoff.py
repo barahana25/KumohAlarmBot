@@ -5,6 +5,9 @@ from discord import app_commands
 from bot.utils.database import channelDataDB
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code, OWNERS, KumohSquarePage
 
+kor_table_dic = {"Academic_Information": "학사안내", "Event_Information": "행사안내", "General_News": "일반소식", "Hagsigdang": "학식당", "faculty_cafeteria": "교수식당", "Purum": "푸름관", "Orum1": "오름1관", "Orum23": "오름2,3관"}
+table_list = KumohSquarePage.name_list() + ["Hagsigdang", "faculty_cafeteria", "Purum", "Orum1", "Orum23"]
+
 class AlarmSet(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -12,7 +15,7 @@ class AlarmSet(commands.Cog):
     @app_commands.command(name="alarmset", description="알람을 설정합니다.")
     @app_commands.choices(
         table=[
-            app_commands.Choice(name=name, value=name) for name in KumohSquarePage.name_list() + ["Hagsigdang", "faculty_cafeteria", "Purum", "Orum1", "Orum23"]
+            app_commands.Choice(name=kor_table_dic[name], value=name) for name in table_list
         ]
     )
     @app_commands.choices(
@@ -50,22 +53,23 @@ class AlarmSet(commands.Cog):
         """ 채널 내에 어느 테이블에서 알람이 켜져있는지 확인합니다. """
 
         all_table_dic = channelDataDB().get_on_channel_for_all_table()
-
+        print(all_table_dic)
         # 채널 알림 상태를 DB에서 불러옴
         on_channel_list = []
         msg_title = ""
 
-        for table in all_table_dic:
+        for table in table_list:
+            kor_table = kor_table_dic[table]
             if interaction.channel.id in all_table_dic[table]:
-                on_channel_list.append(table)
-                msg_title += f":green_circle:  {table} \n"
+                on_channel_list.append(kor_table)
+                msg_title += f":green_circle:  {kor_table} \n"
             else:
-                msg_title += f":red_circle: {table} \n"
+                msg_title += f":red_circle: {kor_table} \n"
             
-        if on_channel_list == []:
-            embed=discord.Embed(title="채널 알람 상태", description="모든 채널에서 알람이 꺼져있습니다.", color=color_code)
-            embed.set_footer(text=BOT_NAME_TAG_VER)
-            return await interaction.response.send_message(embed=embed)
+        # if on_channel_list == []:
+        #     embed=discord.Embed(title="채널 알람 상태", description="이 채널에서 알람이 꺼져있습니다.", color=color_code)
+        #     embed.set_footer(text=BOT_NAME_TAG_VER)
+        #     return await interaction.response.send_message(embed=embed)
         
         embed=discord.Embed(title="채널 알람 상태", description=msg_title, color=color_code)
 

@@ -1,7 +1,7 @@
 """
 
-seboard:
-    ID, BoardID, title, author
+ceboard:
+    ID, articleNo, title, author
 
 """
 
@@ -9,7 +9,7 @@ import sqlite3
 
 from bot import db_path, channel_db_path, KumohSquarePage
 
-class seBoardDB():
+class ceBoardDB():
     def __init__(self):
         self.db_path = db_path
 
@@ -18,22 +18,21 @@ class seBoardDB():
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         # Create table if it doesn't exist
-        cur.execute(f"CREATE TABLE IF NOT EXISTS seboard (id integer PRIMARY KEY AUTOINCREMENT, boardid int, title text, author text, authorid text)")
+        cur.execute(f"CREATE TABLE IF NOT EXISTS ceboard (id integer PRIMARY KEY AUTOINCREMENT, articleNo int, title text, author text)")
 
         # add se board data
         for tr in tr_list:
             board_id = tr[0]
-            title = tr[1].replace("'", "''")
-            author = tr[2].replace("'", "''")
-            author_id = tr[3].replace("'", "''")
+            title = tr[1]
+            author = tr[2]
             
             try:
-                cur.execute("SELECT * FROM seboard WHERE boardid=:Id", {"Id": board_id})
+                cur.execute("SELECT * FROM ceboard WHERE articleNo=:Id", {"Id": board_id})
                 temp = cur.fetchone()
             except:
                 temp = None
             if temp is None:
-                cur.execute(f"INSERT INTO seboard (boardid, title, author, authorid) VALUES(?, ?, ?, ?)", (board_id, title, author, author_id))
+                cur.execute(f"INSERT INTO ceboard (articleNo, title, author) VALUES(?, ?, ?)", (board_id, title, author))
         con.close()
 
     def get_database(self) -> list | None:
@@ -41,7 +40,7 @@ class seBoardDB():
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         try:
-            cur.execute(f"SELECT * FROM seboard ORDER BY id")
+            cur.execute(f"SELECT * FROM ceboard ORDER BY id")
         except:
             con.close()
             return None
@@ -54,7 +53,7 @@ class seBoardDB():
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         try:
-            cur.execute("SELECT * FROM seboard WHERE id=:Id", {"Id": id})
+            cur.execute("SELECT * FROM ceboard WHERE id=:Id", {"Id": id})
         except sqlite3.OperationalError:
             con.close()
             return None
@@ -208,12 +207,8 @@ class channelDataDB():
         con.close()
         return on_channel
 
-# class ScheduleDB():
-    # schedule
-    #     id, title, start, end
-
 if __name__ == "__main__":
-    db_path = "se_board.db"
+    db_path = "ce_board.db"
     channel_db_path = "channel.db"
     post_list = [(80000, '제목1', '글쓴이1'), (80001, '제목2', '글쓴이2')]
-    seBoardDB().set_database(post_list)
+    ceBoardDB().set_database(post_list)

@@ -16,7 +16,7 @@ class Config(object):
 
     color_code = 0xc68e6e # 색상코드
 
-    se_board_link = "https://seboard.site/"
+    ce_board_link = "https://ce.kumoh.ac.kr/ce/sub0501.do"
     kumoh_square_link = "https://www.kumoh.ac.kr/ko/"
 
     db_path = "board_db.db"

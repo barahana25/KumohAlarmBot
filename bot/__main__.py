@@ -2,7 +2,7 @@ import discord
 import asyncio
 
 from discord.ext import commands
-from bot.background.read_se import read_se
+from bot.background.read_ce import read_ce
 from bot.background.broadcast import broadcast
 from bot.background.read_kumoh import read_kumoh
 from bot.background.broadcast_kumoh import broadcast_kumoh
@@ -70,7 +70,7 @@ background_list = {
     "status_task": False,
     "broadcast": True,
     "broadcast_kumoh": True,
-    "read_se": False,
+    "read_ce": True,
     "read_kumoh": False,
     "schedule": True,
     "broadcast_hagsigdang": True,
