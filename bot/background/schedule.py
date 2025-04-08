@@ -16,7 +16,7 @@ async def schedule(bot):
 
     while True:
         # 한달에 한번씩
-        if datetime.datetime.now().day == 1:
+        if datetime.datetime.now().day == 8:
             # 스케쥴 가져오기
             schedules = await get_schedule()
 
@@ -33,12 +33,13 @@ async def schedule(bot):
                     for schedule in schedules:
                         articleNo = str(schedule["articleNo"])
                         title = schedule["articleTitle"]
-                        start_time = datetime.datetime.strptime(f"{schedule['etcChar6']} 0:0:0", '%Y-%m-%d %H:%M:%S') - datetime.timedelta(hours=9)
-                        end_time = datetime.datetime.strptime(f"{schedule['etcChar7']} 23:59:59", '%Y-%m-%d %H:%M:%S') - datetime.timedelta(hours=9)
+                        # Ensure start_time and end_time are timezone-aware
+                        start_time = datetime.datetime.strptime(f"{schedule['etcChar6']} 0:0:0", '%Y-%m-%d %H:%M:%S').replace(tzinfo=datetime.timezone.utc)
+                        end_time = datetime.datetime.strptime(f"{schedule['etcChar7']} 23:59:59", '%Y-%m-%d %H:%M:%S').replace(tzinfo=datetime.timezone.utc)
 
                         # 시작시간이 지금보다 미래라면
-                        if start_time > datetime.datetime.now():
-                            # description이 일치하는 스케쥴 찾기
+                        if start_time > datetime.datetime.now(datetime.timezone.utc):
+                            # 서버에 스케쥴이 등록되어 있는지 확인
                             server_data = None
                             for sc in schedules_in_server:
                                 if int(sc.description) == int(articleNo):
@@ -54,8 +55,11 @@ async def schedule(bot):
                                                                 description=articleNo,
                                                                 location="금오공과대학교",
                                                                 start_time=start_time,
-                                                                end_time=end_time)
+                                                                end_time=end_time,
+                                                                entity_type=discord.EntityType.external,
+                                                                privacy_level=discord.PrivacyLevel.guild_only)
                                 except discord.errors.HTTPException:
+                                    print(traceback.format_exc())
                                     # 서버에 스케쥴이 100개 이상이라면
                                     pass
 

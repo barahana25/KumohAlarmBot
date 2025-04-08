@@ -25,9 +25,6 @@ class Other(commands.Cog):
         embed.set_footer(text=BOT_NAME_TAG_VER)
         await interaction.response.send_message(embed=embed)
 
-        import requests
-        result = requests.get("https://www.kumoh.ac.kr/app/common/selectDataList.do?sqlId=jw.Article.selectCalendarArticle&modelNm=list&jsonStr=%7B%22year%22%3A%222023%22%2C%22bachelorBoardNoList%22%3A%5B%2212%22%5D%7D").text
-
 async def setup(bot):
     await bot.add_cog(Other(bot))
     LOGGER.info('Other loaded!')

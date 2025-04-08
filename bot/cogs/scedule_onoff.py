@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
+from discord.app_commands import Choice
 
 from bot.utils.database import channelDataDB
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code, OWNERS, KumohSquarePage
@@ -11,16 +12,14 @@ class ScheduleAlarmSet(commands.Cog):
         self.table = "Schedule"
 
     @app_commands.command(name="scheduleset")
-    # @option("onoff", description="이 서버에서의 학사일정 연동을 켜거나 끕니다", choices=["ON", "OFF"])
-    @app_commands.describe(onoff="이 서버에서의 학사일정 연동을 켜거나 끕니다")
     @app_commands.choices(onoff=[
         app_commands.Choice(name="ON", value="on"),
         app_commands.Choice(name="OFF", value="off")
     ])
     async def scheduleset(self, interaction: discord.Interaction, onoff: str):
         """ 서버에서 학사일정 연동을 켜거나 끕니다 """
+
         # 오너가 아닐 경우 관리자 권한이 있는지 확인
-        # if interaction.author.id not in OWNERS:
         if interaction.user.id not in OWNERS:
             if not interaction.user.guild_permissions.manage_messages:
                 embed=discord.Embed(title="이 명령어는 서버의 관리자만이 사용할 수 있습니다!")
@@ -40,14 +39,11 @@ class ScheduleAlarmSet(commands.Cog):
 
         embed.set_footer(text=BOT_NAME_TAG_VER)
         await interaction.response.send_message(embed=embed)
-
-    # @scheduleset.autocomplete("onoff")
-    # async def scheduleset_autocomplete(self, interaction: discord.Interaction, current: str):
-    #     return [name for name in ["ON", "OFF"] if current.lower() in name.lower()]
     
     @app_commands.command(name="schedulestatus")
     async def schedulestatus(self, interaction: discord.Interaction):
         """ 이 서버에서 학사일정 연동이 켜져있는지 확인합니다. """
+
         # 채널 알림 상태를 DB에서 불러옴
         on_guild_list = channelDataDB().get_on_channel(self.table)
         if interaction.guild.id in on_guild_list:

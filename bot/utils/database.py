@@ -192,6 +192,22 @@ class channelDataDB():
                 on_channel.append(channel[0])
         return on_channel
 
+    def get_on_channel_for_all_table(self) -> dict[str, list[int]]:
+        """ 모든 테이블의 알람설정 되어있는 채널 가져오기 """
+        con = sqlite3.connect(self.db_path, isolation_level=None)
+        cur = con.cursor()
+        try:
+            cur.execute(f"SELECT * FROM sqlite_master WHERE type='table'")
+            all_table = cur.fetchall()
+        except sqlite3.OperationalError:
+            return None
+        all_table_list = [table[1] for table in all_table]
+        on_channel = {}
+        for table in all_table_list:
+            on_channel[table] = self.get_on_channel(table)
+        con.close()
+        return on_channel
+
 # class ScheduleDB():
     # schedule
     #     id, title, start, end

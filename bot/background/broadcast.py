@@ -5,7 +5,7 @@ import traceback
 
 from bot.utils.database import *
 from bot.utils.se_preview import get_preview
-from bot import LOGGER, BOT_NAME_TAG_VER, se_board_link, db_path
+from bot import LOGGER, BOT_NAME_TAG_VER, db_path, se_board_link
 
 def check_importance(name: str) -> tuple[int, str]:
     color = 0x008000

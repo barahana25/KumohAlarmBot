@@ -11,6 +11,12 @@ class Help(commands.Cog):
     # @option("help_option", description="알고 싶은 메뉴를 선택하세요", choices=["GENERAL", "ALARM"])
     @app_commands.command(name="help", description="도움말을 보여줍니다.")
     @app_commands.describe(help_option="알고 싶은 메뉴를 선택하세요")
+    @app_commands.choices(
+        help_option=[
+            app_commands.Choice(name="general", value="GENERAL"),
+            app_commands.Choice(name="alarm", value="ALARM"),
+        ]
+    )
     async def help(self, interaction: discord.Interaction, *, help_option: str):
         """ 도움말 """
         if not help_option == None:
@@ -44,13 +50,9 @@ class Help(commands.Cog):
         else:
             embed=discord.Embed(title="도움말", description=f"안녕하세요. 전 {self.bot.user.name} 입니다. 아래에 있는 명령어들을 이용해 도움말을 보세요.", color=color_code)
             embed.add_field(name=f"/help general", value=">>> 기본적인 명령어들을 알려드립니다.", inline=False)
-            embed.add_field(name=f"/help alarm",   value=">>> SE 게시판 알람에 관한 명령어들을 보내드립니다.", inline=False)
+            embed.add_field(name=f"/help alarm",   value=">>> 알람에 관한 명령어들을 보내드립니다.", inline=False)
             embed.set_footer(text=BOT_NAME_TAG_VER)
             await interaction.response.send_message(embed=embed)
-
-    # @help.autocomplete("help_option")
-    # async def help_autocomplete(self, interaction: discord.Interaction, current: str):
-    #     return [name for name in ["GENERAL", "ALARM"] if current.lower() in name.lower()]
             
 
 async def setup(bot):
