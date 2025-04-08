@@ -4,11 +4,12 @@ import requests
 import traceback
 from bs4 import BeautifulSoup
 
+from bot.utils.database import *
 # from bot.utils.crawler import getText
 from bot.utils.database import ceBoardDB
 from bot import ce_board_link, LOGGER
 
-async def read_ce(bot):
+async def read_ce():
     """ CE게시판 새 글 읽기 """
     ce_link = ce_board_link
     while True:

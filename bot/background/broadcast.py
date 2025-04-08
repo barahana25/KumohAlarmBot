@@ -60,7 +60,7 @@ async def broadcast(bot):
                 if post is not None:
                     try:
                         img_preview, preview = await get_preview(post[1])
-                    except:
+                    except: 
                         # 글 수정/삭제되었을 경우 오류 예외처리
                         img_preview = None
                         preview = None

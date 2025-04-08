@@ -70,7 +70,7 @@ background_list = {
     "status_task": False,
     "broadcast": True,
     "broadcast_kumoh": True,
-    "read_ce": True,
+    "read_ce": False,
     "read_kumoh": False,
     "schedule": True,
     "broadcast_hagsigdang": True,

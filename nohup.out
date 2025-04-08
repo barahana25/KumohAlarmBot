@@ -1,0 +1,156 @@
+[2025-04-09 00:15:22] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+2025-04-09 00:15:22,288 - discord.ext.commands.bot - WARNING - Privileged message content intent is missing, commands may not work as expected.
+[2025-04-09 00:15:22] [INFO    ] discord.client: logging in using static token
+2025-04-09 00:15:22,288 - discord.client - INFO - logging in using static token
+2025-04-09 00:15:22,900 - bot - INFO - Help loaded!
+2025-04-09 00:15:22,902 - bot - INFO - About loaded!
+2025-04-09 00:15:22,906 - bot - INFO - AlarmSet loaded!
+2025-04-09 00:15:22,908 - bot - INFO - BunRestaurant loaded!
+2025-04-09 00:15:22,910 - bot - INFO - Other loaded!
+2025-04-09 00:15:22,911 - bot - INFO - Ping loaded!
+2025-04-09 00:15:22,913 - bot - INFO - ScheduleAlarmSet loaded!
+[2025-04-09 00:15:23] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 7848d992a8c35ebe12851baf976ab659).
+2025-04-09 00:15:23,933 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 7848d992a8c35ebe12851baf976ab659).
+2025-04-09 00:15:26,020 - bot - INFO - 금오공대 인공지능공학전공 알리미#7491 | V.1.0
+[2025-04-09 00:15:26] [ERROR   ] discord.client: Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/client.py", line 481, in _run_event
+    await coro(*args, **kwargs)
+  File "/discord/Kumoh-alarm/bot/__main__.py", line 62, in on_ready
+    asyncio.create_task(globals()[module_name]())
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: read_ce() missing 1 required positional argument: 'bot'
+2025-04-09 00:15:26,021 - discord.client - ERROR - Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/client.py", line 481, in _run_event
+    await coro(*args, **kwargs)
+  File "/discord/Kumoh-alarm/bot/__main__.py", line 62, in on_ready
+    asyncio.create_task(globals()[module_name]())
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: read_ce() missing 1 required positional argument: 'bot'
+[2025-04-09 00:18:03] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+2025-04-09 00:18:03,736 - discord.ext.commands.bot - WARNING - Privileged message content intent is missing, commands may not work as expected.
+[2025-04-09 00:18:03] [INFO    ] discord.client: logging in using static token
+2025-04-09 00:18:03,736 - discord.client - INFO - logging in using static token
+2025-04-09 00:18:04,384 - bot - INFO - Help loaded!
+2025-04-09 00:18:04,386 - bot - INFO - About loaded!
+2025-04-09 00:18:04,388 - bot - INFO - AlarmSet loaded!
+2025-04-09 00:18:04,389 - bot - INFO - BunRestaurant loaded!
+2025-04-09 00:18:04,391 - bot - INFO - Other loaded!
+2025-04-09 00:18:04,392 - bot - INFO - Ping loaded!
+2025-04-09 00:18:04,394 - bot - INFO - ScheduleAlarmSet loaded!
+[2025-04-09 00:18:05] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 64f77d575cb1cdd298bc6e87d2e6f139).
+2025-04-09 00:18:05,389 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 64f77d575cb1cdd298bc6e87d2e6f139).
+2025-04-09 00:18:07,399 - bot - INFO - 금오공대 인공지능공학전공 알리미#7491 | V.1.0
+[2025-04-09 00:18:43] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+2025-04-09 00:18:43,276 - discord.ext.commands.bot - WARNING - Privileged message content intent is missing, commands may not work as expected.
+[2025-04-09 00:18:43] [INFO    ] discord.client: logging in using static token
+2025-04-09 00:18:43,276 - discord.client - INFO - logging in using static token
+2025-04-09 00:18:44,008 - bot - INFO - Help loaded!
+2025-04-09 00:18:44,009 - bot - INFO - About loaded!
+2025-04-09 00:18:44,011 - bot - INFO - AlarmSet loaded!
+2025-04-09 00:18:44,013 - bot - INFO - BunRestaurant loaded!
+2025-04-09 00:18:44,014 - bot - INFO - Other loaded!
+2025-04-09 00:18:44,016 - bot - INFO - Ping loaded!
+2025-04-09 00:18:44,018 - bot - INFO - ScheduleAlarmSet loaded!
+[2025-04-09 00:18:45] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 9ce7ab115ef235257f796fe45a6b9076).
+2025-04-09 00:18:45,222 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 9ce7ab115ef235257f796fe45a6b9076).
+2025-04-09 00:18:47,246 - bot - INFO - 금오공대 인공지능공학전공 알리미#7491 | V.1.0
+[2025-04-09 00:18:54] [ERROR   ] discord.app_commands.tree: Ignoring exception in command 'alarmstatus'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/discord/Kumoh-alarm/bot/cogs/alarm_onoff.py", line 62, in alarmstatus
+    if interaction.channel.id in all_table_dic[table]:
+                                 ~~~~~~~~~~~~~^^^^^^^
+KeyError: 'Academic_Information'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'alarmstatus' raised an exception: KeyError: 'Academic_Information'
+2025-04-09 00:18:54,429 - discord.app_commands.tree - ERROR - Ignoring exception in command 'alarmstatus'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/discord/Kumoh-alarm/bot/cogs/alarm_onoff.py", line 62, in alarmstatus
+    if interaction.channel.id in all_table_dic[table]:
+                                 ~~~~~~~~~~~~~^^^^^^^
+KeyError: 'Academic_Information'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'alarmstatus' raised an exception: KeyError: 'Academic_Information'
+[2025-04-09 00:20:14] [ERROR   ] discord.app_commands.tree: Ignoring exception in command 'alarmstatus'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/discord/Kumoh-alarm/bot/cogs/alarm_onoff.py", line 62, in alarmstatus
+    try:
+         
+KeyError: 'Hagsigdang'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'alarmstatus' raised an exception: KeyError: 'Hagsigdang'
+2025-04-09 00:20:14,457 - discord.app_commands.tree - ERROR - Ignoring exception in command 'alarmstatus'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/discord/Kumoh-alarm/bot/cogs/alarm_onoff.py", line 62, in alarmstatus
+    try:
+         
+KeyError: 'Hagsigdang'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'alarmstatus' raised an exception: KeyError: 'Hagsigdang'
+[2025-04-09 00:22:52] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+2025-04-09 00:22:52,926 - discord.ext.commands.bot - WARNING - Privileged message content intent is missing, commands may not work as expected.
+[2025-04-09 00:22:52] [INFO    ] discord.client: logging in using static token
+2025-04-09 00:22:52,926 - discord.client - INFO - logging in using static token
+2025-04-09 00:22:53,566 - bot - INFO - Help loaded!
+2025-04-09 00:22:53,568 - bot - INFO - About loaded!
+2025-04-09 00:22:53,573 - bot - INFO - AlarmSet loaded!
+2025-04-09 00:22:53,574 - bot - INFO - BunRestaurant loaded!
+2025-04-09 00:22:53,576 - bot - INFO - Other loaded!
+2025-04-09 00:22:53,577 - bot - INFO - Ping loaded!
+2025-04-09 00:22:53,579 - bot - INFO - ScheduleAlarmSet loaded!
+[2025-04-09 00:22:54] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: acaef86387e0b96a3c30a36b1803222b).
+2025-04-09 00:22:54,448 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: acaef86387e0b96a3c30a36b1803222b).
+2025-04-09 00:22:56,462 - bot - INFO - 금오공대 인공지능공학전공 알리미#7491 | V.1.0
