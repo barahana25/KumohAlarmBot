@@ -32,13 +32,19 @@ async def status_task():
 class Bot (commands.Bot):
     def __init__ (self):
         super().__init__(
+            command_prefix = "/",
             intents=intents
         )
         self.remove_command("help")
-
+        
+        # for i in EXTENSIONS:
+        #     self.load_extension("bot.cogs." + i)
+    async def setup_hook(self):
         for i in EXTENSIONS:
-            self.load_extension("bot.cogs." + i)
-
+            # 비동기적으로 cog 로드
+            await self.load_extension(f"bot.cogs.{i}")
+        await self.tree.sync()
+            
     async def on_ready(self):
         LOGGER.info(BOT_NAME_TAG_VER)
         await self.change_presence(
@@ -46,14 +52,14 @@ class Bot (commands.Bot):
             status = discord.Status.online,
         )
         
-        while background_list != {}:
+        while background_list:
             module_name = list(background_list.keys())[0]
             pass_variable = background_list.pop(module_name)
 
             if pass_variable:
-                bot.loop.create_task(globals()[module_name](bot))
+                asyncio.create_task(globals()[module_name](bot))
             else:
-                bot.loop.create_task(globals()[module_name]())
+                asyncio.create_task(globals()[module_name]())
 
     async def on_message(self, message):
         if message.author.bot:

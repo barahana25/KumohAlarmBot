@@ -1,7 +1,6 @@
 import discord
-from discord import option
 from discord.ext import commands
-from discord.commands import slash_command
+from discord import app_commands
 
 import json
 import datetime
@@ -13,9 +12,9 @@ class Room(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @slash_command()
-    @option("room", description="프로젝트실을 선택하세요", choices=["D330", "DB134"])
-    async def room(self, ctx, room: str):
+    @app_commands.command(name="room")
+    # @option("room", description="프로젝트실을 선택하세요", choices=["D330", "DB134"])
+    async def room(self, interaction: discord.Interaction, room: str):
         """ 현재 프로젝트실 예약이 가능한지 조회합니다 """
         # 방 전체 리스트 가져옴
         room_list = []
@@ -51,8 +50,19 @@ class Room(commands.Cog):
         embed.add_field(name="예약 가능", value=reservation_possible, inline=True)
         embed.add_field(name="예약 불가능", value=reservation_impossible, inline=True)
         embed.set_footer(text=BOT_NAME_TAG_VER)
-        await ctx.respond(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
-def setup(bot):
-    bot.add_cog(Room(bot))
+    @room.autocomplete("room")
+    async def room_autocomplete(self, interaction: discord.Interaction, current: str):
+        # 방 전체 리스트 가져옴
+        room_list = []
+        rooms=json.loads(await getText("https://kiosek.kr/api/v1/rooms")).get('result')
+        for i in rooms:
+            room_list.append(i["roomName"])
+
+        return [name for name in room_list if current.lower() in name.lower()]
+    
+
+async def setup(bot):
+    await bot.add_cog(Room(bot))
     LOGGER.info('Room loaded!')

@@ -1,7 +1,6 @@
 import discord
-from discord import option
 from discord.ext import commands
-from discord.commands import slash_command, Option
+from discord import app_commands
 
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code, OWNERS, EXTENSIONS, DebugServer
 
@@ -9,9 +8,10 @@ class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @slash_command()
-    @option("help_option", description="알고 싶은 메뉴를 선택하세요", choices=["GENERAL", "ALARM"])
-    async def help(self, ctx, *, help_option: str):
+    # @option("help_option", description="알고 싶은 메뉴를 선택하세요", choices=["GENERAL", "ALARM"])
+    @app_commands.command(name="help", description="도움말을 보여줍니다.")
+    @app_commands.describe(help_option="알고 싶은 메뉴를 선택하세요")
+    async def help(self, interaction: discord.Interaction, *, help_option: str):
         """ 도움말 """
         if not help_option == None:
             help_option = help_option.upper()
@@ -32,23 +32,27 @@ class Help(commands.Cog):
                 embed.add_field(name=f"/room [*프로젝트실*]",   value=">>> 선택한 프로젝트실의 현황을 알려드립니다.", inline=True)
 
             embed.set_footer(text=BOT_NAME_TAG_VER)
-            await ctx.respond(embed=embed)
+            await interaction.response.send_message(embed=embed)
 
         elif help_option == "ALARM" or help_option == "알람":
             embed=discord.Embed(title="알람 명령어", color=color_code)
             embed.add_field(name=f"/alarmstatus",         value="해당 채널의 알람 상태를 알려드립니다.", inline=False)
             embed.add_field(name=f"/alarmset [*ON/OFF*]", value="해당 채널에 알람을 설정하거나 해제합니다. 이는 서버의 관리자만이 사용할 수 있습니다.", inline=False)
             embed.set_footer(text=BOT_NAME_TAG_VER)
-            await ctx.respond(embed=embed)
+            await interaction.response.send_message(embed=embed)
 
         else:
             embed=discord.Embed(title="도움말", description=f"안녕하세요. 전 {self.bot.user.name} 입니다. 아래에 있는 명령어들을 이용해 도움말을 보세요.", color=color_code)
             embed.add_field(name=f"/help general", value=">>> 기본적인 명령어들을 알려드립니다.", inline=False)
             embed.add_field(name=f"/help alarm",   value=">>> SE 게시판 알람에 관한 명령어들을 보내드립니다.", inline=False)
             embed.set_footer(text=BOT_NAME_TAG_VER)
-            await ctx.respond(embed=embed)
+            await interaction.response.send_message(embed=embed)
+
+    # @help.autocomplete("help_option")
+    # async def help_autocomplete(self, interaction: discord.Interaction, current: str):
+    #     return [name for name in ["GENERAL", "ALARM"] if current.lower() in name.lower()]
             
 
-def setup(bot):
-    bot.add_cog(Help(bot))
+async def setup(bot):
+    await bot.add_cog(Help(bot))
     LOGGER.info('Help loaded!')
