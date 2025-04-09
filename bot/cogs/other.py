@@ -14,7 +14,7 @@ class Other(commands.Cog):
         """ 봇 초대 링크 전송 """
         link = f'https://discord.com/api/oauth2/authorize?client_id={self.bot.user.id}&permissions=414464789568&scope=bot%20applications.commands'
         embed=discord.Embed(title="초대링크", description=f"봇을 초대할 다른 서버의 관리자라면 [링크]({link})를 클릭하면 됩니다.", color=color_code)
-        embed.set_footer(text=BOT_NAME_TAG_VER)
+        # embed.set_footer(text=BOT_NAME_TAG_VER)
         await interaction.response.send_message(embed=embed)
 
     @app_commands.command(name="uptime")
@@ -22,7 +22,7 @@ class Other(commands.Cog):
         """ 서버 업타임 """
         res = subprocess.check_output("uptime", shell=False, encoding='utf-8')
         embed=discord.Embed(title="Uptime", description="```%s```" %res.replace(',  ', '\n').replace(', ', '\n').replace(': ', ': ')[1:], color=color_code)
-        embed.set_footer(text=BOT_NAME_TAG_VER)
+        # embed.set_footer(text=BOT_NAME_TAG_VER)
         await interaction.response.send_message(embed=embed)
 
 async def setup(bot):

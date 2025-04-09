@@ -31,7 +31,7 @@ class AlarmSet(commands.Cog):
         if interaction.user.id not in OWNERS:
             if not interaction.user.guild_permissions.manage_messages:
                 embed=discord.Embed(title="이 명령어는 서버의 관리자만이 사용할 수 있습니다!")
-                embed.set_footer(text=BOT_NAME_TAG_VER)
+                # embed.set_footer(text=BOT_NAME_TAG_VER)
                 return await interaction.response.send_message(embed=embed, ephemeral=True)
 
         # onoff를 소문자로 변환
@@ -40,12 +40,12 @@ class AlarmSet(commands.Cog):
         channelDataDB().channel_status_set(table, interaction.channel.id, onoff)
 
         if onoff == "on":
-            msg_title = ":green_circle: 이 채널에서 알람을 켰습니다"
+            msg_title = f":green_circle: 이 채널에서 {kor_table_dic[table]} 알람을 켰습니다"
         else:
-            msg_title = ":red_circle: 이 채널에서 알람을 껐습니다"
+            msg_title = f":red_circle: 이 채널에서 {kor_table_dic[table]} 알람을 껐습니다"
         embed=discord.Embed(title="알람 설정", description=msg_title, color=color_code)
 
-        embed.set_footer(text=BOT_NAME_TAG_VER)
+        # embed.set_footer(text=BOT_NAME_TAG_VER)
         await interaction.response.send_message(embed=embed)
 
     @app_commands.command(name="alarmstatus")
@@ -70,7 +70,7 @@ class AlarmSet(commands.Cog):
             
         embed=discord.Embed(title="채널 알람 상태", description=msg_title, color=color_code)
 
-        embed.set_footer(text=BOT_NAME_TAG_VER)
+        # embed.set_footer(text=BOT_NAME_TAG_VER)
         await interaction.response.send_message(embed=embed)
         
     

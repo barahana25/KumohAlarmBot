@@ -54,7 +54,7 @@ async def send_dorm_food(bot, dorm, today_menu: list) -> None:
                     menu_title, menu_content = menu
                     embed.add_field(name=menu_title, value=menu_content, inline=True)
 
-                embed.set_footer(text=BOT_NAME_TAG_VER)
+                # embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
 
             except Exception:

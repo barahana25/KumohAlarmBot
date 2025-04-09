@@ -14,11 +14,11 @@ class Ping(commands.Cog):
         latancy = self.bot.latency
         before = time.monotonic()
         embed=discord.Embed(title="**Ping**", description=f'ping_pong: Pong! WebSocket Ping {round(latancy * 1000)}ms\n:ping_pong: Pong! Measuring...', color=color_code)
-        embed.set_footer(text=BOT_NAME_TAG_VER)
+        # embed.set_footer(text=BOT_NAME_TAG_VER)
         message = await interaction.response.send_message(embed=embed, ephemeral=True)
         ping = (time.monotonic() - before) * 1000
         embed=discord.Embed(title="**Ping**", description=f':ping_pong: Pong! WebSocket Ping {round(latancy * 1000)}ms\n:ping_pong: Pong! Message Ping {int(ping)}ms', color=color_code)
-        embed.set_footer(text=BOT_NAME_TAG_VER)
+        # embed.set_footer(text=BOT_NAME_TAG_VER)
         await interaction.edit_original_response(embed=embed)
 
 async def setup(bot):

@@ -24,7 +24,7 @@ class BunRestaurant(commands.Cog):
         menus = parse.find("div", {"class": "menu-list-box"}).find("tbody").find_all("td")
 
         embed=discord.Embed(title="**오늘의 분식당 메뉴**", description=menus[a].get_text(), color=color_code)
-        embed.set_footer(text=BOT_NAME_TAG_VER)
+        # embed.set_footer(text=BOT_NAME_TAG_VER)
         return await interaction.response.send_message(embed=embed)
 
 async def setup(bot):

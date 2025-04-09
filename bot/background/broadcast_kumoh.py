@@ -79,7 +79,7 @@ async def send_msg(bot, table_name: str, post: tuple, preview: (str | None), img
                 if img_preview:
                     embed.set_image(url=img_preview)
 
-                embed.set_footer(text=BOT_NAME_TAG_VER)
+                # embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
 
             except Exception as e:

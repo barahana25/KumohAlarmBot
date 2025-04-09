@@ -9,28 +9,6 @@ from bot.utils.database import *
 from bot.utils.biskit_preview import get_preview
 from bot import LOGGER, BOT_NAME_TAG_VER, db_path, biskit_link
 
-def check_importance(name: str) -> tuple[int, str]:
-    color = 0x008000
-    important = ":green_circle: 보통"
-
-    very_important_list =  ["오득환", "김선명", "이현아", "김시관", "신윤식", "이해연", "김병만", "전태수", "김영원", "이광희", "김영우", "학과장"]
-    important_list = ["이한나[조교]", "[조교]", "학생회"]
-
-    for vil in very_important_list:
-        if name in vil:
-            color = 0xff0000
-            important = ":red_circle: 매우 중요"
-            break
-
-    if color == 0x008000:
-        for il in important_list:
-            if name in il:
-                color = 0xff7f00
-                important = ":orange_circle: 중요"
-                break
-    
-    return color, important
-
 async def broadcast_biskit(bot):
     """ 비스킷 새 글 알림 전송 """
     if not os.path.exists(db_path):
@@ -75,10 +53,7 @@ async def broadcast_biskit(bot):
 
 async def send_msg(bot, post: tuple, preview: (str | None), img_preview_base64: (str | None)):
     """ 메시지 전송 """
-    
-    # color, important = check_importance(post[3])
 
-    
     _, post_id, title, author, org, category, period, mileage = post
 
     color = 0x008000
@@ -113,7 +88,7 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview_base64: 
                         embed.set_image(url="attachment://image.png")
                         # embed.set_image(url=img_preview)
 
-                    embed.set_footer(text=BOT_NAME_TAG_VER)
+                    # embed.set_footer(text=BOT_NAME_TAG_VER)
                     await target_channel.send(embed=embed, file=file)
 
                     break

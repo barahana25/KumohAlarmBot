@@ -13,8 +13,8 @@ def check_importance(name: str) -> tuple[int, str]:
     color = 0x008000
     important = ":green_circle: 보통"
 
-    very_important_list =  ["오득환", "김선명", "이현아", "김시관", "신윤식", "이해연", "김병만", "전태수", "김영원", "이광희", "김영우", "학과장"]
-    important_list = ["이한나[조교]", "[조교]", "학생회"]
+    very_important_list =  ["김양현", "컴퓨터공학과 관리자"]
+    important_list = ["김진희"]
 
     for vil in very_important_list:
         if name in vil:
@@ -76,9 +76,7 @@ async def broadcast(bot):
 async def send_msg(bot, post: tuple, preview: (str | None), img_preview_base64: (str | None)):
     """ 메시지 전송 """
     
-    # color, important = check_importance(post[3])
-
-    color = 0x008000
+    color, important = check_importance(post[3])
 
     # 채널 아이디 리스트 가져오기
     channel_id_list = channelDataDB().get_on_channel("ce_board")
@@ -92,7 +90,7 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview_base64: 
                 try:
                     embed=discord.Embed(title=post[2], description=f"", color=color)
                     embed.add_field(name="글쓴이", value=post[3], inline=True)
-                    # embed.add_field(name="중요도", value=important, inline=True)
+                    embed.add_field(name="중요도", value=important, inline=True)
                     embed.add_field(name="링크", value=f"{ce_board_link}?mode=view&articleNo={post[1]}&article.offset=0&articleLimit=10", inline=False)
                     
                     # 미리보기 텍스트가 있을 경우
@@ -105,7 +103,7 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview_base64: 
                         embed.set_image(url="attachment://image.png")
                         # embed.set_image(url=img_preview)
 
-                    embed.set_footer(text=BOT_NAME_TAG_VER)
+                    # embed.set_footer(text=BOT_NAME_TAG_VER)
                     await target_channel.send(embed=embed, file=file)
 
                     break
