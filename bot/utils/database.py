@@ -84,11 +84,6 @@ class KumohSquareDB():
         for tr in tr_list:
             # 변수 설정
             board_name, post_num, post_link, category, title, author = tr
-
-            # SQL 텍스트 처리
-            title = title.replace("'", "''")
-            author = author.replace("'", "''")
-
             # 테이블 없으면 생성
             cur.execute(f"""CREATE TABLE IF NOT EXISTS {board_name} (id integer PRIMARY KEY AUTOINCREMENT, 
                                                                     postid int,
@@ -97,6 +92,10 @@ class KumohSquareDB():
                                                                     title text,
                                                                     author text)
             """)
+
+            # SQL 텍스트 처리
+            title = title.replace("'", "''")
+            author = author.replace("'", "''")
             
             try:
                 cur.execute(f"SELECT * FROM {board_name} WHERE postid=:Id", {"Id": post_num})
@@ -161,6 +160,12 @@ class BiskitDB():
         """ 데이터베이스에 데이터 추가 """
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
+        # 테이블 없으면 생성
+        cur.execute(f"""CREATE TABLE IF NOT EXISTS biskit (id integer PRIMARY KEY AUTOINCREMENT, 
+                                                                postid int,
+                                                                title text,
+                                                                org text)
+        """)
 
         # 비스킷 게시글 데이터 추가
         for tr in tr_list:
@@ -169,14 +174,6 @@ class BiskitDB():
 
             # SQL 텍스트 처리
             title = title.replace("'", "''")
-            author = author.replace("'", "''")
-
-            # 테이블 없으면 생성
-            cur.execute(f"""CREATE TABLE IF NOT EXISTS biskit (id integer PRIMARY KEY AUTOINCREMENT, 
-                                                                    postid int,
-                                                                    title text,
-                                                                    org text,)
-            """)
             
             try:
                 cur.execute(f"SELECT * FROM biskit WHERE postid=:Id", {"Id": post_id})
@@ -217,7 +214,7 @@ class BiskitDB():
     def get_latest_data_id(self, table: str) -> int | None:
         """ 테이블의 마지막 행 id 리턴 """
         all_db = self.get_database(table)
-        if all_db is None:
+        if all_db == []:
             return None
         else:
             return all_db[-1][0]

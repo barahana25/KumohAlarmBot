@@ -12,3 +12,17 @@
 [2025-04-09 16:23:28] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 435927e66f93bdc2944ce54e968aeac7).
 2025-04-09 16:23:28,856 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 435927e66f93bdc2944ce54e968aeac7).
 2025-04-09 16:23:30,867 - bot - INFO - 금오공대 인공지능공학전공 알리미#7491 | V.1.0
+[2025-04-09 16:45:36] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+2025-04-09 16:45:36,875 - discord.ext.commands.bot - WARNING - Privileged message content intent is missing, commands may not work as expected.
+[2025-04-09 16:45:36] [INFO    ] discord.client: logging in using static token
+2025-04-09 16:45:36,876 - discord.client - INFO - logging in using static token
+2025-04-09 16:45:37,592 - bot - INFO - Help loaded!
+2025-04-09 16:45:37,593 - bot - INFO - About loaded!
+2025-04-09 16:45:37,595 - bot - INFO - AlarmSet loaded!
+2025-04-09 16:45:37,597 - bot - INFO - BunRestaurant loaded!
+2025-04-09 16:45:37,599 - bot - INFO - Other loaded!
+2025-04-09 16:45:37,600 - bot - INFO - Ping loaded!
+2025-04-09 16:45:37,602 - bot - INFO - ScheduleAlarmSet loaded!
+[2025-04-09 16:45:38] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 19e9380834b16e4d773e7273518dea7f).
+2025-04-09 16:45:38,616 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 19e9380834b16e4d773e7273518dea7f).
+2025-04-09 16:45:40,627 - bot - INFO - 금오공대 인공지능공학전공 알리미#7491 | V.1.0

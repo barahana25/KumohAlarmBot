@@ -19,7 +19,7 @@ async def read_biskit():
 
             soup = BeautifulSoup(result, 'html.parser')
             content_li = []
-            for i in soup.find('ul', {"class": "con_text_box swiper-wrapper"}).find_all('li', {'class': 'swiper-slide swiper-slide-active'}):
+            for i in soup.find('ul', {"class": "con_text_box swiper-wrapper"}).find_all('li', {'class': 'swiper-slide'}):
                 tmp_post_id = i.find('a', {'class':'detailBtn'})['data-params']
                 post_id = re.search(r'"encSddpbSeq":"([0-9]+)"', tmp_post_id)
                 
