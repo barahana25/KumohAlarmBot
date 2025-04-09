@@ -6,6 +6,8 @@ from bot.background.read_ce import read_ce
 from bot.background.broadcast import broadcast
 from bot.background.read_kumoh import read_kumoh
 from bot.background.broadcast_kumoh import broadcast_kumoh
+from bot.background.read_biskit import read_biskit
+from bot.background.broadcast_biskit import broadcast_biskit
 from bot.background.schedule import schedule
 from bot.background.broadcast_hagsigdang import broadcast_hagsigdang
 from bot.background.broadcast_dormitory import broadcast_dorm_food
@@ -70,8 +72,10 @@ background_list = {
     "status_task": False,
     "broadcast": True,
     "broadcast_kumoh": True,
+    "broadcast_biskit": True,
     "read_ce": False,
     "read_kumoh": False,
+    "read_biskit": False,
     "schedule": True,
     "broadcast_hagsigdang": True,
     "broadcast_faculty_cafeteria": True,

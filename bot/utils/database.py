@@ -165,29 +165,27 @@ class BiskitDB():
         # 비스킷 게시글 데이터 추가
         for tr in tr_list:
             # 변수 설정
-            board_name, post_num, post_link, category, title, author = tr
+            post_id, title, org = tr
 
             # SQL 텍스트 처리
             title = title.replace("'", "''")
             author = author.replace("'", "''")
 
             # 테이블 없으면 생성
-            cur.execute(f"""CREATE TABLE IF NOT EXISTS {board_name} (id integer PRIMARY KEY AUTOINCREMENT, 
+            cur.execute(f"""CREATE TABLE IF NOT EXISTS biskit (id integer PRIMARY KEY AUTOINCREMENT, 
                                                                     postid int,
-                                                                    link text,
-                                                                    category text,
                                                                     title text,
-                                                                    author text)
+                                                                    org text,)
             """)
             
             try:
-                cur.execute(f"SELECT * FROM {board_name} WHERE postid=:Id", {"Id": post_num})
+                cur.execute(f"SELECT * FROM biskit WHERE postid=:Id", {"Id": post_id})
                 temp = cur.fetchone()
             except:
                 temp = None
             # 데이터베이스에 없으면 추가
             if temp is None:
-                cur.execute(f"INSERT INTO {board_name} (postid, link, category, title, author) VALUES(?, ?, ?, ?, ?)", (post_num, post_link, category, title, author))
+                cur.execute(f"INSERT INTO biskit (postid, title, org) VALUES(?, ?, ?)", (post_id, title, org))
         con.close()
 
     def get_database(self, table: str) -> list | None:
@@ -223,15 +221,6 @@ class BiskitDB():
             return None
         else:
             return all_db[-1][0]
-    
-    def get_all_latest_data_ids(self) -> dict[str, int]:
-        """ 모든 테이블의 마지막 행 id 리턴 """
-        all_ids = {}
-        for table in KumohSquarePage.name_list():
-            latest_data = self.get_latest_data_id(table)
-            if latest_data is not None:
-                all_ids[table] = latest_data
-        return all_ids # {table_name: id}
 
 class channelDataDB():
     def __init__(self):
