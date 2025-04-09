@@ -151,6 +151,88 @@ class KumohSquareDB():
                 all_ids[table] = latest_data
         return all_ids # {table_name: id}
 
+class BiskitDB():
+    def __init__(self):
+        # 기존 DB에 테이블 얹어서 사용
+        # id, postid, link, category, title, author
+        self.db_path = db_path
+
+    def set_database(self, tr_list: list) -> None:
+        """ 데이터베이스에 데이터 추가 """
+        con = sqlite3.connect(self.db_path, isolation_level=None)
+        cur = con.cursor()
+
+        # 비스킷 게시글 데이터 추가
+        for tr in tr_list:
+            # 변수 설정
+            board_name, post_num, post_link, category, title, author = tr
+
+            # SQL 텍스트 처리
+            title = title.replace("'", "''")
+            author = author.replace("'", "''")
+
+            # 테이블 없으면 생성
+            cur.execute(f"""CREATE TABLE IF NOT EXISTS {board_name} (id integer PRIMARY KEY AUTOINCREMENT, 
+                                                                    postid int,
+                                                                    link text,
+                                                                    category text,
+                                                                    title text,
+                                                                    author text)
+            """)
+            
+            try:
+                cur.execute(f"SELECT * FROM {board_name} WHERE postid=:Id", {"Id": post_num})
+                temp = cur.fetchone()
+            except:
+                temp = None
+            # 데이터베이스에 없으면 추가
+            if temp is None:
+                cur.execute(f"INSERT INTO {board_name} (postid, link, category, title, author) VALUES(?, ?, ?, ?, ?)", (post_num, post_link, category, title, author))
+        con.close()
+
+    def get_database(self, table: str) -> list | None:
+        """ 해당 테이블의 데이터베이스 가져오기 """
+        con = sqlite3.connect(self.db_path, isolation_level=None)
+        cur = con.cursor()
+        try:
+            cur.execute(f"SELECT * FROM {table} ORDER BY id")
+        except:
+            con.close()
+            return None
+        temp = cur.fetchall()
+        con.close()
+        return temp
+    
+    def get_database_from_id(self, table: str, id: int) -> tuple[int, int, str, str, str, str] | None:
+        """ id로 데이터 가져오기 """
+        con = sqlite3.connect(self.db_path, isolation_level=None)
+        cur = con.cursor()
+        try:
+            cur.execute(f"SELECT * FROM {table} WHERE id=:Id", {"Id": id})
+        except sqlite3.OperationalError:
+            con.close()
+            return None
+        temp = cur.fetchone()
+        con.close()
+        return temp
+
+    def get_latest_data_id(self, table: str) -> int | None:
+        """ 테이블의 마지막 행 id 리턴 """
+        all_db = self.get_database(table)
+        if all_db is None:
+            return None
+        else:
+            return all_db[-1][0]
+    
+    def get_all_latest_data_ids(self) -> dict[str, int]:
+        """ 모든 테이블의 마지막 행 id 리턴 """
+        all_ids = {}
+        for table in KumohSquarePage.name_list():
+            latest_data = self.get_latest_data_id(table)
+            if latest_data is not None:
+                all_ids[table] = latest_data
+        return all_ids # {table_name: id}
+
 class channelDataDB():
     def __init__(self):
         self.db_path = channel_db_path
