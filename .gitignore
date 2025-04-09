@@ -3,6 +3,7 @@ config.py
 test*.py
 *.db
 .vscode
+nohup.out
 
 
 # Byte-compiled / optimized / DLL files
