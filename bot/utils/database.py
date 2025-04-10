@@ -198,12 +198,12 @@ class BiskitDB():
         con.close()
         return temp
     
-    def get_database_from_id(self, table: str, id: int) -> tuple[int, int, str, str, str, str] | None:
+    def get_database_from_id(self, id: int) -> tuple[int, int, str, str, str, str] | None:
         """ id로 데이터 가져오기 """
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         try:
-            cur.execute(f"SELECT * FROM {table} WHERE id=:Id", {"Id": id})
+            cur.execute(f"SELECT * FROM biskit WHERE id=:Id", {"Id": id})
         except sqlite3.OperationalError:
             con.close()
             return None

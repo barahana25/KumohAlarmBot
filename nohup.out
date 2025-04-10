@@ -90,3 +90,137 @@
 [2025-04-09 23:01:47] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: f945b1a9071e8f4d5c0bc91cea2f165a).
 2025-04-09 23:01:47,018 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: f945b1a9071e8f4d5c0bc91cea2f165a).
 2025-04-09 23:01:49,029 - bot - INFO - 금오공대 인공지능공학전공 알리미#7491 | V.1.0
+[2025-04-09 23:25:41] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session f945b1a9071e8f4d5c0bc91cea2f165a.
+2025-04-09 23:25:41,783 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f945b1a9071e8f4d5c0bc91cea2f165a.
+2025-04-09 23:59:14,827 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-11' coro=<broadcast_biskit() done, defined at /discord/Kumoh-alarm/bot/background/broadcast_biskit.py:12> exception=TypeError("BiskitDB.get_database_from_id() missing 1 required positional argument: 'id'")>
+Traceback (most recent call last):
+  File "/discord/Kumoh-alarm/bot/background/broadcast_biskit.py", line 36, in broadcast_biskit
+    post = BiskitDB().get_database_from_id(data_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: BiskitDB.get_database_from_id() missing 1 required positional argument: 'id'
+[2025-04-10 01:25:53] [WARNING ] discord.gateway: WebSocket in shard ID None is ratelimited, waiting 9.03 seconds
+2025-04-10 01:25:53,318 - discord.gateway - WARNING - WebSocket in shard ID None is ratelimited, waiting 9.03 seconds
+[2025-04-10 01:25:54] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session f945b1a9071e8f4d5c0bc91cea2f165a.
+2025-04-10 01:25:54,247 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f945b1a9071e8f4d5c0bc91cea2f165a.
+[2025-04-10 04:27:42] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session f945b1a9071e8f4d5c0bc91cea2f165a.
+2025-04-10 04:27:42,979 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f945b1a9071e8f4d5c0bc91cea2f165a.
+[2025-04-10 06:49:34] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session f945b1a9071e8f4d5c0bc91cea2f165a.
+2025-04-10 06:49:34,692 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f945b1a9071e8f4d5c0bc91cea2f165a.
+2025-04-10 08:12:20,492 - bot - INFO - Send msg : (13, 511211, 'https://www.kumoh.ac.kr/ko/sub06_01_01_01.do?mode=view&articleNo=511211&article.offset=0&articleLimit=10', '[대학원]', '[2025년도 국립대학 육성사업] 대학원생 학술활동 참가비 지원 관련 추가 안내', '강선화')
+[2025-04-10 08:33:41] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session f945b1a9071e8f4d5c0bc91cea2f165a.
+2025-04-10 08:33:41,193 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f945b1a9071e8f4d5c0bc91cea2f165a.
+[2025-04-10 10:52:48] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+2025-04-10 10:52:48,064 - discord.ext.commands.bot - WARNING - Privileged message content intent is missing, commands may not work as expected.
+[2025-04-10 10:52:48] [INFO    ] discord.client: logging in using static token
+2025-04-10 10:52:48,065 - discord.client - INFO - logging in using static token
+2025-04-10 10:52:48,840 - bot - INFO - Help loaded!
+2025-04-10 10:52:48,841 - bot - INFO - About loaded!
+2025-04-10 10:52:48,846 - bot - INFO - AlarmSet loaded!
+2025-04-10 10:52:48,847 - bot - INFO - BunRestaurant loaded!
+2025-04-10 10:52:48,849 - bot - INFO - Other loaded!
+2025-04-10 10:52:48,851 - bot - INFO - Ping loaded!
+2025-04-10 10:52:48,853 - bot - INFO - ScheduleAlarmSet loaded!
+[2025-04-10 10:52:49] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 4a48fd6561e995a465b51eecd6ae979b).
+2025-04-10 10:52:49,737 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 4a48fd6561e995a465b51eecd6ae979b).
+2025-04-10 10:52:51,757 - bot - INFO - 금오공대 인공지능공학전공 알리미#7491 | V.1.0
+[2025-04-10 11:03:46] [ERROR   ] discord.app_commands.tree: Ignoring exception in command 'schedulestatus'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/discord/Kumoh-alarm/bot/cogs/schedule_onoff.py", line 49, in schedulestatus
+    if interaction.guild.id in on_guild_list:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 872, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'schedulestatus' raised an exception: TypeError: argument of type 'NoneType' is not iterable
+2025-04-10 11:03:46,584 - discord.app_commands.tree - ERROR - Ignoring exception in command 'schedulestatus'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/discord/Kumoh-alarm/bot/cogs/schedule_onoff.py", line 49, in schedulestatus
+    if interaction.guild.id in on_guild_list:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 872, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'schedulestatus' raised an exception: TypeError: argument of type 'NoneType' is not iterable
+[2025-04-10 11:03:59] [ERROR   ] discord.app_commands.tree: Ignoring exception in command 'schedulestatus'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/discord/Kumoh-alarm/bot/cogs/schedule_onoff.py", line 49, in schedulestatus
+    if interaction.guild.id in on_guild_list:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 872, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'schedulestatus' raised an exception: TypeError: argument of type 'NoneType' is not iterable
+2025-04-10 11:03:59,158 - discord.app_commands.tree - ERROR - Ignoring exception in command 'schedulestatus'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 857, in _do_call
+    return await self._callback(self.binding, interaction, **params)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/discord/Kumoh-alarm/bot/cogs/schedule_onoff.py", line 49, in schedulestatus
+    if interaction.guild.id in on_guild_list:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/discord/app_commands/commands.py", line 872, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'schedulestatus' raised an exception: TypeError: argument of type 'NoneType' is not iterable
+[2025-04-10 11:14:52] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 4a48fd6561e995a465b51eecd6ae979b.
+2025-04-10 11:14:52,841 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 4a48fd6561e995a465b51eecd6ae979b.
+[2025-04-10 12:28:16] [WARNING ] discord.ext.commands.bot: Privileged message content intent is missing, commands may not work as expected.
+2025-04-10 12:28:16,896 - discord.ext.commands.bot - WARNING - Privileged message content intent is missing, commands may not work as expected.
+[2025-04-10 12:28:16] [INFO    ] discord.client: logging in using static token
+2025-04-10 12:28:16,896 - discord.client - INFO - logging in using static token
+2025-04-10 12:28:17,708 - bot - INFO - Help loaded!
+2025-04-10 12:28:17,709 - bot - INFO - About loaded!
+2025-04-10 12:28:17,711 - bot - INFO - AlarmSet loaded!
+2025-04-10 12:28:17,713 - bot - INFO - BunRestaurant loaded!
+2025-04-10 12:28:17,714 - bot - INFO - Other loaded!
+2025-04-10 12:28:17,716 - bot - INFO - Ping loaded!
+2025-04-10 12:28:17,720 - bot - INFO - ScheduleAlarmSet loaded!
+[2025-04-10 12:28:18] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: ee02c9369986913c1318f397cab00ed1).
+2025-04-10 12:28:18,615 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: ee02c9369986913c1318f397cab00ed1).
+2025-04-10 12:28:20,629 - bot - INFO - 금오공대 인공지능공학전공 알리미#7491 | V.1.0

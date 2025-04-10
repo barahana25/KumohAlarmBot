@@ -12,7 +12,7 @@ class Help(commands.Cog):
     @app_commands.describe(help_option="알고 싶은 메뉴를 선택하세요")
     @app_commands.choices(
         help_option=[
-            app_commands.Choice(name="general", value="GENERAL"),
+            app_commands.Choice(name="일반", value="GENERAL"),
             app_commands.Choice(name="alarm", value="ALARM"),
         ]
     )
@@ -45,7 +45,7 @@ class Help(commands.Cog):
 
         else:
             embed=discord.Embed(title="도움말", description=f"안녕하세요. 전 {self.bot.user.name} 입니다. 아래에 있는 명령어들을 이용해 도움말을 보세요.", color=color_code)
-            embed.add_field(name=f"/help general", value=">>> 기본적인 명령어들을 알려드립니다.", inline=False)
+            embed.add_field(name=f"/help 일반", value=">>> 기본적인 명령어들을 알려드립니다.", inline=False)
             embed.add_field(name=f"/help alarm",   value=">>> 알람에 관한 명령어들을 보내드립니다.", inline=False)
             # embed.set_footer(text=BOT_NAME_TAG_VER)
             await interaction.response.send_message(embed=embed)

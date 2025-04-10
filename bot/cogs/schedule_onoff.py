@@ -46,6 +46,8 @@ class ScheduleAlarmSet(commands.Cog):
 
         # 채널 알림 상태를 DB에서 불러옴
         on_guild_list = channelDataDB().get_on_channel(self.table)
+        if on_guild_list is None:
+            msg_title = ":red_circle: 이 서버에서 학사일정 연동이 꺼져있습니다."
         if interaction.guild.id in on_guild_list:
             msg_title = ":green_circle: 이 서버에서 학사일정 연동이 켜져있습니다."
         else:
