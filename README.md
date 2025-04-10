@@ -5,20 +5,22 @@
 
 ## How to use
 봇 초대 링크(https://discord.com/oauth2/authorize?client_id=1358754351262208021&permissions=1689384584214592&integration_type=0&scope=bot)
-1. /alarmset table {테이블 이름} onoff {ON|OFF}
+1. /alarmset table {테이블 이름} onoff {ON|OFF}  
 봇을 초대한 뒤, 원하는 채널에서 alarmset 명령어를 호출해줍니다.
 테이블 이름에는
 금오광장의 학사 안내, 행사 안내, 일반소식 과 비스킷 마일리지, 컴퓨터공학과 공지사항
 학식당, 교직원식당, 푸름관, 오름1관, 오름23관 이 있습니다.
 
-2. /alarmstatus
+2. /alarmstatus  
 명령어를 호출하는 채널에서의 알람 상태를 알려줍니다.
 
-3. /scheduleset {ON|OFF}
+3. /scheduleset {ON|OFF}  
 학사일정을 이벤트 탭으로 보여줍니다.
 
-4. /schedulestatus
+4. /schedulestatus  
 학사일정 알림 여부를 보여줍니다.
+
+5. 나머지 명령어들은 / 를 눌러 확인할 수 있습니다.
 
 
 ### 디스코드 서버
