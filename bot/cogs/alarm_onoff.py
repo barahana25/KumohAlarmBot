@@ -5,8 +5,8 @@ from discord import app_commands
 from bot.utils.database import channelDataDB
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code, OWNERS, KumohSquarePage
 
-kor_table_dic = {"Academic_Information": "학사안내", "Event_Information": "행사안내", "General_News": "일반소식", "ceboard": "컴퓨터공학과 공지사항", "biskit": "비스킷 마일리지", "Hagsigdang": "학식당", "faculty_cafeteria": "교직원식당", "Purum": "푸름관", "Orum1": "오름1관", "Orum23": "오름2,3관"}
-table_list = KumohSquarePage.name_list() + ["biskit", "ceboard", "Hagsigdang", "faculty_cafeteria", "Purum", "Orum1", "Orum23"]
+kor_table_dic = {"Academic_Information": "학사안내", "Event_Information": "행사안내", "General_News": "일반소식", "ceboard": "컴퓨터공학과 공지사항", "biskit": "비스킷 마일리지", "Hagsigdang": "학식당", "faculty_cafeteria": "교직원식당", "Purum": "푸름관", "Orum1": "오름1관", "Orum23": "오름2,3관", "error": "에러 알림"}
+table_list = KumohSquarePage.name_list() + ["biskit", "ceboard", "Hagsigdang", "faculty_cafeteria", "Purum", "Orum1", "Orum23", "error"]
 
 class AlarmSet(commands.Cog):
     def __init__(self, bot):

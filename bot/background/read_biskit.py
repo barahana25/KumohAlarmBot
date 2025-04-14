@@ -7,6 +7,7 @@ import traceback
 
 from bot.utils.database import *
 from bot.utils.database import BiskitDB
+from bot.utils.crawler import getText
 from bot import biskit_link, LOGGER
 
 async def read_biskit():
@@ -15,7 +16,7 @@ async def read_biskit():
         try:
             # 쿠키 필요 없음
             header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
-            result = requests.get(biskit_link, headers=header).text  # 해당 링크의 html 코드를 가져옴
+            result = await getText(biskit_link, header)
 
             soup = BeautifulSoup(result, 'html.parser')
             content_li = []

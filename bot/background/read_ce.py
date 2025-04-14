@@ -5,7 +5,7 @@ import traceback
 from bs4 import BeautifulSoup
 
 from bot.utils.database import *
-# from bot.utils.crawler import getText
+from bot.utils.crawler import getText
 from bot.utils.database import ceBoardDB
 from bot import ce_board_link, LOGGER
 
@@ -15,7 +15,7 @@ async def read_ce():
     while True:
         try:
             header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
-            result = requests.get(ce_link, headers=header).text  # 해당 링크의 html 코드를 가져옴
+            result = await getText(ce_link, header)
 
             soup = BeautifulSoup(result, 'html.parser')
             content_li = []
