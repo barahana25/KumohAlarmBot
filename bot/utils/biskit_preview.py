@@ -40,9 +40,6 @@ def biskit_login():
 
     first_res = requests.get(first_url, headers=first_headers, allow_redirects=False)
 
-    print("First Response Headers:")
-    print(first_res.headers)
-
     JSESSIONID4 = first_res.cookies['JSESSIONID4']
     Cookie = f'WMONID=NlaPpmASqkd; JSESSIONID4={JSESSIONID4}; JSESSIONID={JSESSIONID};'
     biskit_Cookie = f'WMONID=NlaPpmASqkd; JSESSIONID4={JSESSIONID4}; G_ENABLED_IDPS=google;'
@@ -71,9 +68,6 @@ def biskit_login():
 
     second_res = requests.get(second_url, headers=second_headers, allow_redirects=False)
 
-    print("Second Response Headers:")
-    print(second_res.headers)
-
     ORIGINAL_JESSIONID = second_res.cookies['JSESSIONID']
 
     third_url = 'https://biskit.kumoh.ac.kr/sso/index.jsp?pmi-sso-return2=none'
@@ -100,9 +94,6 @@ def biskit_login():
 
     third_res = requests.get(third_url, headers=third_headers, allow_redirects=False)
 
-    print("Third Response Headers:")
-    print(third_res.headers)
-
     fourth_url = third_res.headers['Location']
 
     fourth_headers = {
@@ -127,8 +118,6 @@ def biskit_login():
 
     fourth_res = requests.get(fourth_url, headers=fourth_headers, allow_redirects=False)
 
-    print("Fourth Response Headers:")
-    print(fourth_res.headers)
     JSESSIONID = fourth_res.cookies['JSESSIONID']
     Cookie = f'WMONID=NlaPpmASqkd; JSESSIONID4={JSESSIONID4}; JSESSIONID={JSESSIONID};'
 
@@ -165,8 +154,6 @@ def biskit_login():
 
     login_res = requests.post(login_url, headers=login_headers, data=login_data, allow_redirects=False)
 
-    print("5 Response Headers:")
-    print(login_res.headers)
     JSESSIONID = login_res.cookies['JSESSIONID']
     Cookie = f'WMONID=NlaPpmASqkd; JSESSIONID4={JSESSIONID4}; JSESSIONID={JSESSIONID};'
 
@@ -194,8 +181,6 @@ def biskit_login():
 
     sso_res = requests.get(sso_url, headers=sso_headers, allow_redirects=False)
 
-    print(sso_res.headers)
-
     biskit_url = "https://biskit.kumoh.ac.kr/sso/index.jsp"
 
     biskit_headers = {
@@ -221,8 +206,6 @@ def biskit_login():
 
     biskit_res = requests.get(biskit_url, headers=biskit_headers, allow_redirects=False)
 
-    print(biskit_res.headers)
-
     biskit_sso_url = biskit_res.headers['Location']
     biskit_sso_headers = {
     'Host': 'sso.kumoh.ac.kr',
@@ -246,8 +229,6 @@ def biskit_login():
     }
 
     biskit_sso_res = requests.get(biskit_sso_url, headers=biskit_sso_headers, allow_redirects=False)
-
-    print(biskit_sso_res.headers)
 
     biskit_sso_1_url = biskit_sso_res.headers['Location']
 
@@ -273,8 +254,6 @@ def biskit_login():
 
     biskit_sso_1_res = requests.get(biskit_sso_1_url, headers=biskit_sso_1_headers, allow_redirects=False)
 
-    print(biskit_sso_1_res.headers)
-
     biskit_login_url = biskit_sso_1_res.headers['Location']
 
     biskit_login_headers = {
@@ -299,8 +278,6 @@ def biskit_login():
 
     biskit_login_res = requests.get(biskit_login_url, headers=biskit_login_headers, allow_redirects=False)
 
-    print(biskit_login_res.headers)
-
     biskit_sso_2_url = biskit_login_res.headers['Location']
 
     biskit_sso_2_headers = {
@@ -324,7 +301,6 @@ def biskit_login():
     }
 
     biskit_sso_2_res = requests.get(biskit_sso_2_url, headers=biskit_sso_2_headers, allow_redirects=False)
-    print(biskit_sso_2_res.headers)
 
     biskit_sso_2_soup = BeautifulSoup(biskit_sso_2_res.text, 'html.parser')
     userId = biskit_sso_2_soup.find('input', {'name': 'userId'})['value']
@@ -358,8 +334,6 @@ def biskit_login():
     }
 
     biskit_login_proc_res = requests.post(biskit_login_proc_url, headers=biskit_login_proc_headers, data=biskit_login_proc_data, allow_redirects=False)
-    print(biskit_login_proc_res.headers)
-    print(biskit_login_proc_res.text)
 
     return biskit_Cookie
 
@@ -424,7 +398,7 @@ async def get_preview(post_id: int) -> tuple:
 
     text = ''
     for i in text_list:
-        text += i.get_text() + " "
+        text += i.get_text().replace(r'\xa0', '') + " "
 
     if len(text) <= 100:
         result = text
@@ -433,24 +407,24 @@ async def get_preview(post_id: int) -> tuple:
 
     title = soup.find('div', {"class": "tab_top_wrap"}).find('h4').text.strip()
     for i in soup.find('div', {"class": "table_wrap"}).find('tbody').find_all('tr'):
-        if i.find('th', {"class": "first"}).text.strip() == "운영조직":
+        if i.find('th').text.strip() == "운영조직":
             org = i.find_all('td')[0].text.strip()
             author = i.find_all('td')[1].text.strip()
 
-        elif i.find('th', {"class": "first"}).text.strip() == "프로그램 분류":
+        elif i.find('th').text.strip() == "프로그램 분류":
             category = i.find('td').text.strip()
 
-        elif i.find('th', {"class": "first"}).text.strip() == "신청기간":
-            period = i.find('td').text.strip()
+        elif i.find('th').text.strip() == "신청기간":
+            period = i.find('td').text.strip().replace(r'\xa0', ' ')
 
-        elif i.find('th', {"class": "first"}).text.strip() == "수료 인증서":
+        elif i.find('th').text.strip() == "수료 인증서":
             mileage = int(i.find_all('td')[1].text.strip())
             
     post = (0, post_id, title, author, org, category, period, mileage)
     return post, img_preview_base64, result
 # test
 if __name__ == "__main__":
-    print(asyncio.run(get_preview(34915)))
+    print(asyncio.run(get_preview(31303033303738)))
 
 
 
