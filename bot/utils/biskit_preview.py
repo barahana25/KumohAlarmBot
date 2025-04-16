@@ -403,7 +403,7 @@ async def get_preview(post_id: int) -> tuple:
     if len(text) <= 100:
         result = text
     else:
-        result = f'{text[:100]} ...[더보기]({biskit_link}/ptfol/imng/icmpNsbjtPgm/findIcmpNsbjtPgmInfo.do?encSddpbSeq={post_id})'
+        result = f'{text[:100]} ...[더보기]({biskit_link}ptfol/imng/icmpNsbjtPgm/findIcmpNsbjtPgmInfo.do?encSddpbSeq={post_id})'
 
     title = soup.find('div', {"class": "tab_top_wrap"}).find('h4').text.strip()
     for i in soup.find('div', {"class": "table_wrap"}).find('tbody').find_all('tr'):
