@@ -27,7 +27,7 @@
 
 ### 디스코드 서버
 
-https://discord.gg/65qwcUXS
+https://discord.gg/tgMFRQED
 
 ## How to install
 1. bot 폴더 안에 config.py 파일을 만든다.
