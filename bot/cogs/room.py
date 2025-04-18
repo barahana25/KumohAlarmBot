@@ -232,17 +232,9 @@ class Room(commands.Cog):
         day = datetime.datetime.now().weekday()
         
         empty_time = find_classroom_empty_time(classroom_dict, classroom, day)
-        # empty_time_str = "9:00~9:50: %d\n10:00~10:50: %d\n11:00~11:50: %d\n12:00~12:50: %d\n13:00~13:50: %d\n14:00~14:50: %d\n15:00~15:50: %d\n16:00~16:50: %d\n17:00~17:50: %d\n18:00~18:50: %d\n18:55~19:45: %d\n19:50~20:40: %d\n20:45~21:35: %d\n21:40~22:30: %d\n"
         
-        # empty_time에 있으면 :green_circle: , 없으면 :red_circle: 달기
-        # empty_time_str = "9:00~9:50: %s\n10:00~10:50: %s\n11:00~11:50: %s\n12:00~12:50: %s\n13:00~13:50: %s\n14:00~14:50: %s\n15:00~15:50: %s\n16:00~16:50: %s\n17:00~17:50: %s\n18:00~18:50: %s\n18:55~19:45: %s\n19:50~20:40: %s\n20:45~21:35: %s\n21:40~22:30: %s\n"
+        # 각 시간대에 대해 아이콘과 수업명을 하나씩 넣기
         empty_time_str = "%s 9:00~9:50 %s\n%s 10:00~10:50 %s\n%s 11:00~11:50 %s\n%s 12:00~12:50 %s\n%s 13:00~13:50 %s\n%s 14:00~14:50 %s\n%s 15:00~15:50 %s\n%s 16:00~16:50 %s\n%s 17:00~17:50 %s\n%s 18:00~18:50 %s\n%s 18:55~19:45 %s\n%s 19:50~20:40 %s\n%s 20:45~21:35 %s\n%s 21:40~22:30 %s"
-        # empty_time = {'1':None, '2':None, '3':"전자공학부 PLC설계 성영휘", '4':"전자공학부 PLC설계 성영휘", '5':None, '6':None, '7':None, '8':None, '9':None, 'A':None, 'B':None, 'C':None, 'D':None, 'E':None}
-        # empty_time_str에 있는 %s를 empty_time에 있는 값으로 대체 두 개씩 들어가야함
-        
-        # filled_time_str = empty_time_str % tuple(
-        #     [empty_time.get(str(i), None) if i % 2 == 0 else ":green_circle:" if empty_time.get(str(i), None) else ":red_circle:" for i in range(1, 15)] # 1~14까지
-        # )
 
         # 각 시간대에 대해 아이콘과 수업명을 하나씩 넣기
         values = []
