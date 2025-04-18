@@ -4,7 +4,7 @@
 
 
 ## How to use
-봇 초대 링크(https://discord.com/oauth2/authorize?client_id=1358754351262208021&permissions=1689384584214592&integration_type=0&scope=bot)
+[봇 초대 링크](https://discord.com/oauth2/authorize?client_id=1358754351262208021&permissions=1689384584214592&integration_type=0&scope=bot)
 1. /alarmset table {테이블 이름} onoff {ON|OFF}  
 봇을 초대한 뒤, 원하는 채널에서 alarmset 명령어를 호출해줍니다.  
 테이블 이름 목록  
