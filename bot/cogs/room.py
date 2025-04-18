@@ -280,11 +280,23 @@ class Room(commands.Cog):
             6: '일'
         }
         empty_time = find_classroom_empty_time(classroom_dict, classroom, day)
-        # empty_time에 있으면 :green_circle: , 없으면 :red_circle: 달기
-        empty_time_str = "%s 9:00~9:50\n%s 10:00~10:50\n%s 11:00~11:50\n%s 12:00~12:50\n%s 13:00~13:50\n%s 14:00~14:50\n%s 15:00~15:50\n%s 16:00~16:50\n%s 17:00~17:50\n%s 18:00~18:50\n%s 18:55~19:45\n%s 19:50~20:40\n%s 20:45~21:35\n%s 21:40~22:30"
-        empty_time_str = empty_time_str % tuple([f":green_circle:" if str(i) in empty_time else f":red_circle:" for i in ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E']])
-        
-        embed = discord.Embed(title=f"{day_dict[day]}요일 {building[:building.find('(')]} {classroom} 시간표", description=empty_time_str)
+
+        # 각 시간대에 대해 아이콘과 수업명을 하나씩 넣기
+        empty_time_str = "%s 9:00~9:50 %s\n%s 10:00~10:50 %s\n%s 11:00~11:50 %s\n%s 12:00~12:50 %s\n%s 13:00~13:50 %s\n%s 14:00~14:50 %s\n%s 15:00~15:50 %s\n%s 16:00~16:50 %s\n%s 17:00~17:50 %s\n%s 18:00~18:50 %s\n%s 18:55~19:45 %s\n%s 19:50~20:40 %s\n%s 20:45~21:35 %s\n%s 21:40~22:30 %s"
+
+        # 각 시간대에 대해 아이콘과 수업명을 하나씩 넣기
+        values = []
+        for key in empty_time.keys():
+            val = empty_time.get(key)
+            if val is None:
+                values.extend([":green_circle:", ""])  # 비어있을 때
+            else:
+                values.extend([":red_circle:", val])   # 수업이 있을 때
+
+        filled_time_str = empty_time_str % tuple(values)
+
+        embed = discord.Embed(title=f"{day_dict[day]}요일 {building[:building.find('(')]} {classroom} 시간표", description=filled_time_str)
+
         await interaction.response.send_message(embed=embed)
 
 
