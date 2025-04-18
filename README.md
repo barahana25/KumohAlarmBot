@@ -27,7 +27,7 @@
 
 ### 디스코드 서버
 
-https://discord.gg/65qwcUXS
+https://discord.gg/tgMFRQED
 
 ## How to install
 1. bot 폴더 안에 config.py 파일을 만든다.
@@ -44,4 +44,13 @@ class Development(Config):
     BOT_ID = 봇아이디
 ```
 `sample_config.py`를 참고하여 만들면 된다.<br>
-3. `python3 -m bot` 명령어로 실행한다.
+
+3. 비스킷 자동 로그인을 위해 (utils.biskit_preview.py에서 os.environ 사용) <br>
+   ~/.bashrc에 <br>
+   export hakbun=학번 <br>
+   export password=비밀번호 <br>
+   를 저장하고 source ~/.bashrc 를 실행해준다.
+   
+4. `python3 -m bot` 명령어로 실행한다.
+
+
