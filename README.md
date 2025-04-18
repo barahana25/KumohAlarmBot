@@ -13,27 +13,27 @@
 (3) 컴퓨터공학과 (공지사항)  
 (4) 학식당, 교직원식당, 푸름관, 오름1관, 오름23관
 
-3. /alarmstatus  
+2. /alarmstatus  
 명령어를 호출하는 채널에서의 알람 상태를 알려줍니다.
 
-4. /scheduleset {ON|OFF}  
+3. /scheduleset {ON|OFF}  
 학사일정을 이벤트 탭으로 보여줍니다.
 
-5. /schedulestatus  
+4. /schedulestatus  
 학사일정 알림 여부를 보여줍니다.
 
-6. /room building {건물 이름} classroom {강의실 이름}  
+5. /room building {건물 이름} classroom {강의실 이름}  
 오늘 강의실의 수업일정을 보여줍니다.  
 비어있다면 녹색, 수업이 있다면 빨간색으로 표시되고 (학과 | 강의 이름 | 교수님 이름) 을 보여줍니다.  
 ex) :red_circle: 14:00~14:50 xx공학과 컴퓨팅사고 홍길동
 
-7. /room_day building {건물 이름} classroom {강의실 이름} day {요일}  
+6. /room_day building {건물 이름} classroom {강의실 이름} day {요일}  
 해당 요일의 강의실 수업일정을 보여줍니다.
 
-8. /room_ready_now building {건물 이름} duration {시간}  
+7. /room_ready_now building {건물 이름} duration {시간}  
 오늘 해당 건물에서 현재 시간으로부터 duration시간만큼 비어있는 강의실을 모두 보여줍니다.
 
-9. 나머지 명령어들은 / 를 눌러 확인할 수 있습니다.
+8. 나머지 명령어들은 / 를 눌러 확인할 수 있습니다.
 
 
 ### 디스코드 서버
