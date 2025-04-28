@@ -4,7 +4,7 @@ from bot.utils.crawler import getText
 
 async def get_ks_preview(link: str) -> tuple:
     header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
-    html = await getText(link, header)
+    html = getText(link, header)
 
     parse = BeautifulSoup(html, 'lxml')
 
@@ -18,7 +18,7 @@ async def get_ks_preview(link: str) -> tuple:
         post_text = post.find_all("p")
         text = ''
         for i in post_text:
-            text += i.get_text() + " "
+            text += i.getText() + " "
         
         if len(text) <= 100:
             result = text

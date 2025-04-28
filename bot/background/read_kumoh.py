@@ -15,7 +15,7 @@ async def read_kumoh():
             try:
                 # 링크 생성
                 link = kumoh_square_link + i.value
-                result = await getText(link, header)
+                result = getText(link, header)
 
                 parse = BeautifulSoup(result, 'lxml')
                 trs = parse.find("div", {"class": "board-list01"})

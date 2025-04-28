@@ -15,7 +15,7 @@ async def read_ce():
     while True:
         try:
             header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
-            result = await getText(ce_link, header)
+            result = getText(ce_link, header)
 
             soup = BeautifulSoup(result, 'html.parser')
             content_li = []

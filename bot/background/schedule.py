@@ -82,10 +82,10 @@ async def get_schedule() -> list:
     this_year_link = f"https://www.kumoh.ac.kr/app/common/selectDataList.do?sqlId=jw.Article.selectCalendarArticle&modelNm=list&jsonStr=%7B%22year%22%3A%22{datetime.datetime.now().year}%22%2C%22bachelorBoardNoList%22%3A%5B%2212%22%5D%7D"
     next_year_link = f"https://www.kumoh.ac.kr/app/common/selectDataList.do?sqlId=jw.Article.selectCalendarArticle&modelNm=list&jsonStr=%7B%22year%22%3A%22{(datetime.datetime.now() + relativedelta(years=1)).year}%22%2C%22bachelorBoardNoList%22%3A%5B%2212%22%5D%7D"
 
-    this_year = await getText(this_year_link, header)
+    this_year = getText(this_year_link, header)
     this_year = json.loads(this_year)['list']
 
-    next_year = await getText(next_year_link, header)
+    next_year = getText(next_year_link, header)
     next_year = json.loads(next_year)['list']
 
     return this_year + next_year

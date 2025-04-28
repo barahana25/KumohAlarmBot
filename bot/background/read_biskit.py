@@ -16,11 +16,11 @@ async def read_biskit():
         try:
             # 쿠키 필요 없음
             header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
-            result = await getText(biskit_link, header)
+            result = getText(biskit_link, header)
 
             soup = BeautifulSoup(result, 'html.parser')
             content_li = []
-            for i in soup.find('ul', {"class": "con_text_box swiper-wrapper"}).find_all('li', {'class': 'swiper-slide'}):
+            for i in soup.find('ul', {"class": "con_text_box"}).find_all('li', {'class': 'swiper-slide'}):
                 tmp_post_id = i.find('a', {'class':'detailBtn'})['data-params']
                 post_id = re.search(r'"encSddpbSeq":"([0-9]+)"', tmp_post_id)
                 

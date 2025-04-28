@@ -28,7 +28,7 @@ async def get_preview(post_id: int) -> tuple:
 
     text = ''
     for i in text_list:
-        text += i.get_text() + " "
+        text += i.getText() + " "
     
     if len(text) <= 100:
         result = text

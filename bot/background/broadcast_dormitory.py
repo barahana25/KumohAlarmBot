@@ -22,13 +22,13 @@ async def broadcast_dorm_food(bot) -> None:
         if datetime.now().hour == 7 and datetime.now().minute == 0:
             for dorm in links:
                 dt = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-                result = await getText(links[dorm] + "?mode=menuList&srDt=" + dt, header)
+                result = getText(links[dorm] + "?mode=menuList&srDt=" + dt, header)
                 parse = BeautifulSoup(result, 'lxml')
                 box = parse.find("table", {"class": "smu-table"})
 
                 today_menu_list = []
                 for i in box.find("tbody").find_all("tr"):
-                    menu = i.find_all("td")[datetime.now().weekday()].get_text().strip().split("\n")
+                    menu = i.find_all("td")[datetime.now().weekday()].getText().strip().split("\n")
                     today_menu_list.append([menu[0], '\n'.join(menu[1:]).strip()])
 
                 await send_dorm_food(bot, dorm, today_menu_list)

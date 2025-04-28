@@ -398,7 +398,7 @@ async def get_preview(post_id: int) -> tuple:
 
     text = ''
     for i in text_list:
-        text += i.get_text().replace(r'\xa0', '') + " "
+        text += i.getText().replace(r'\xa0', '') + " "
 
     if len(text) <= 100:
         result = text
