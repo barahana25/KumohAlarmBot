@@ -79,7 +79,7 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview_base64: 
                         embed.add_field(name="마일리지", value=mileage, inline=True)
                         # embed.add_field(name="중요도", value=important, inline=True)
                         embed.add_field(name="링크", value=f"{biskit_link}?mode=view&articleNo={post_id}&article.offset=0&articleLimit=10", inline=False)
-                        
+                        file = None
                         # 미리보기 텍스트가 있을 경우
                         if preview:
                             embed.add_field(name="미리보기", value=preview, inline=False)
@@ -91,7 +91,10 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview_base64: 
                             # embed.set_image(url=img_preview)
 
                         # embed.set_footer(text=BOT_NAME_TAG_VER)
-                        await target_channel.send(embed=embed, file=file)
+                        if file is not None:
+                            await target_channel.send(embed=embed, file=file)
+                        else:
+                            await target_channel.send(embed=embed)
 
                         break
                     except Exception as e:
