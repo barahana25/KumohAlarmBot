@@ -381,6 +381,7 @@ async def get_preview(post_id: int) -> tuple:
 
     # Set img preview
     img_preview = None
+    img_preview_base64 = None
     try:
         img_preview = biskit_link + soup.find('div', {"class": "table_wrap"}).find('tbody').find('img')['src']
         res = requests.get(img_preview, headers=header)
@@ -407,6 +408,10 @@ async def get_preview(post_id: int) -> tuple:
 
     title = soup.find('div', {"class": "tab_top_wrap"}).find('h4').text.strip()
     for i in soup.find('div', {"class": "table_wrap"}).find('tbody').find_all('tr'):
+        
+        if not i.find('th'):
+            continue
+
         if i.find('th').text.strip() == "운영조직":
             org = i.find_all('td')[0].text.strip()
             author = i.find_all('td')[1].text.strip()
@@ -424,7 +429,7 @@ async def get_preview(post_id: int) -> tuple:
     return post, img_preview_base64, result
 # test
 if __name__ == "__main__":
-    print(asyncio.run(get_preview(31303033303738)))
+    print(asyncio.run(get_preview(31303033323734)))
 
 
 
