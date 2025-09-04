@@ -69,6 +69,66 @@ class ceBoardDB():
         else:
             return all_db[-1][0]
 
+class aiBoardDB():
+    def __init__(self):
+        self.db_path = db_path
+
+    def set_database(self, tr_list: list) -> None:
+        """ 데이터베이스에 데이터 추가 """
+        con = sqlite3.connect(self.db_path, isolation_level=None)
+        cur = con.cursor()
+        # Create table if it doesn't exist
+        cur.execute(f"CREATE TABLE IF NOT EXISTS aiboard (id integer PRIMARY KEY AUTOINCREMENT, articleNo int, title text, author text)")
+
+        # add se board data
+        for tr in tr_list:
+            board_id = tr[0]
+            title = tr[1]
+            author = tr[2]
+            
+            try:
+                cur.execute("SELECT * FROM aiboard WHERE articleNo=:Id", {"Id": board_id})
+                temp = cur.fetchone()
+            except:
+                temp = None
+            if temp is None:
+                cur.execute(f"INSERT INTO aiboard (articleNo, title, author) VALUES(?, ?, ?)", (board_id, title, author))
+        con.close()
+
+    def get_database(self) -> list | None:
+        """ 모든 데이터베이스 가져오기 """
+        con = sqlite3.connect(self.db_path, isolation_level=None)
+        cur = con.cursor()
+        try:
+            cur.execute(f"SELECT * FROM aiboard ORDER BY id")
+        except:
+            con.close()
+            return None
+        temp = cur.fetchall()
+        con.close()
+        return temp
+    
+    def get_database_from_id(self, id: int) -> tuple[int, int, str, str, str] | None:
+        """ id로 데이터베이스 가져오기 """
+        con = sqlite3.connect(self.db_path, isolation_level=None)
+        cur = con.cursor()
+        try:
+            cur.execute("SELECT * FROM aiboard WHERE id=:Id", {"Id": id})
+        except sqlite3.OperationalError:
+            con.close()
+            return None
+        temp = cur.fetchone()
+        con.close()
+        return temp
+
+    def get_latest_data_id(self) -> int | None:
+        """ 마지막 행 id 리턴 """
+        all_db = self.get_database()
+        if all_db is None:
+            return None
+        else:
+            return all_db[-1][0]
+
 class KumohSquareDB():
     def __init__(self):
         # 기존 DB에 테이블 얹어서 사용

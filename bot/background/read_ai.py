@@ -6,12 +6,12 @@ from bs4 import BeautifulSoup
 
 from bot.utils.database import *
 from bot.utils.crawler import getText
-from bot.utils.database import ceBoardDB
-from bot import ce_board_link, LOGGER
+from bot.utils.database import aiBoardDB
+from bot import ai_board_link, LOGGER
 
 async def read_ce():
     """ CE게시판 새 글 읽기 """
-    ce_link = ce_board_link
+    ce_link = ai_board_link
     while True:
         try:
             header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
@@ -29,7 +29,6 @@ async def read_ce():
                 post_num = re.search(r"&articleNo=([0-9]+)&", post_link)
                 if post_num is not None:
                     post_num = int(post_num.group(1))
-
                 title = i.find("td", {"class": "title left"}).find("span", {"class": "title-wrapper"}).text.strip()
                 title = re.sub(r'\s+', ' ', title).strip()
                 author = i.find("td", {"class": "writer"}).text.strip()
@@ -45,7 +44,7 @@ async def read_ce():
 
             while True:
                 try:
-                    ceBoardDB().set_database(content_li)
+                    aiBoardDB().set_database(content_li)
                 except:
                     print(traceback.format_exc())
                 else:

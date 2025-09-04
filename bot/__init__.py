@@ -31,6 +31,7 @@ db_path           = Config.db_path
 channel_db_path   = Config.channel_db_path
 
 ce_board_link     = Config.ce_board_link
+ai_board_link     = Config.ai_board_link
 biskit_link      = Config.biskit_link
 kumoh_square_link = Config.kumoh_square_link
 
