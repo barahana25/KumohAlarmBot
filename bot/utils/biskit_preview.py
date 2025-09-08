@@ -385,15 +385,15 @@ async def get_preview(post_id: int) -> tuple:
     try:
         img_preview = biskit_link + soup.find('div', {"class": "table_wrap"}).find('tbody').find('img')['src']
         res = requests.get(img_preview, headers=header)
-        with open('./temp.png', 'wb') as f:
+        with open('./biskit_temp.png', 'wb') as f:
             f.write(res.content)
 
-        with open('./temp.png', 'rb') as f:
+        with open('./biskit_temp.png', 'rb') as f:
             base64_str = base64.b64encode(f.read())
 
         img_preview_base64 = base64_str
 
-        os.remove('./temp.png')
+        os.remove('./biskit_temp.png')
     except:
         pass
 

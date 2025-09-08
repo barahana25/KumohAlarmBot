@@ -1,6 +1,8 @@
 import asyncio
 import requests
 from bs4 import BeautifulSoup
+import base64
+import os
 
 if __name__ != "__main__":
     from bot import ce_board_link
@@ -21,8 +23,19 @@ async def get_preview(post_id: int) -> tuple:
 
     # Set img preview
     img_preview = None
+    img_preview_base64 = None
     try:
-        img_preview = soup.find('div', {"class": "board-contents"}).find('img')['src']
+        img_preview = "https://ce.kumoh.ac.kr" + soup.find('div', {"class": "board-contents"}).find('img')['src']
+        res = requests.get(img_preview, headers=header)
+        with open('./ce_temp.png', 'wb') as f:
+            f.write(res.content)
+
+        with open('./ce_temp.png', 'rb') as f:
+            base64_str = base64.b64encode(f.read())
+
+        img_preview_base64 = base64_str
+
+        os.remove('./ce_temp.png')
     except:
         pass
 
@@ -35,7 +48,7 @@ async def get_preview(post_id: int) -> tuple:
     else:
         result = f'{text[:100]} ...[더보기]({ce_board_link}?mode=view&articleNo={post_id}&article.offset=0&articleLimit=10)'
     
-    return img_preview, result
+    return img_preview_base64, result
 
 # test
 if __name__ == "__main__":
