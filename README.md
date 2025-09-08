@@ -8,7 +8,6 @@
 - Discord 계정 및 서버 관리 권한
 - Git 사용 가능
 - (Linux/Mac 기준) bash 환경 설정 가능
-
 ---
 
 ## 설치 방법
