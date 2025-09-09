@@ -6,7 +6,7 @@ from discord.ext import commands
 from discord import app_commands
 
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code
-from bot.config import syllabus_2025
+from bot.syllabus import syllabus_2025
 
 
 def get_classroom_data():
