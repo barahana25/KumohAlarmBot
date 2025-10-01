@@ -15,10 +15,11 @@ async def get_ks_preview(link: str) -> tuple:
 
     if post is not None:
         # 텍스트 프리뷰
-        post_text = post.find_all("p")
+        post_text = post.get_text(separator='\n', strip=True)
         text = ''
-        for i in post_text:
-            text += i.getText() + " "
+        # for i in post_text:
+        #     text += i.getText() + "\n" 
+        text = post_text
         
         if len(text) <= 100:
             result = text
@@ -38,3 +39,8 @@ async def get_ks_preview(link: str) -> tuple:
             img_preview = None
     
     return img_preview, result
+
+if __name__ == "__main__":
+    import asyncio
+    test_link = "https://www.kumoh.ac.kr/ko/sub06_01_01_01.do?mode=view&articleNo=538397&article.offset=0&articleLimit=10"
+    print(asyncio.run(get_ks_preview(test_link)))

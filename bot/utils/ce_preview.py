@@ -19,7 +19,7 @@ async def get_preview(post_id: int) -> tuple:
     
     soup = BeautifulSoup(html, 'html.parser')
     
-    text_list = soup.find('div', {"class": "board-contents"}).find('pre').find('pre').find_all('div')
+    text_list = soup.find('div', {"class": "board-contents"})
 
     # Set img preview
     img_preview = None
@@ -40,9 +40,11 @@ async def get_preview(post_id: int) -> tuple:
         pass
 
     text = ''
-    for i in text_list:
-        text += i.getText() + " "
-    
+    post_text = text_list.get_text(separator='\n', strip=True)
+    # for i in text_list:
+    #     text += i.getText() + " "
+    text = post_text
+    # print(text)
     if len(text) <= 100:
         result = text
     else:
@@ -50,6 +52,9 @@ async def get_preview(post_id: int) -> tuple:
     
     return img_preview_base64, result
 
+async def main():
+    img, result = await get_preview(538541)
+    print("\n".join(map(str, result.splitlines())))
 # test
 if __name__ == "__main__":
-    print(asyncio.run(get_preview(538541)))
+    asyncio.run(main())

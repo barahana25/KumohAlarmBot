@@ -58,8 +58,9 @@ async def broadcast_ai(bot):
                 post = aiBoardDB().get_database_from_id(data_id)
                 # 데이터베이스에 정보가 존재할 경우
                 if post is not None:
-                    try:
+                    try:                        
                         img_preview, preview = await get_preview(post[1])
+                        preview = "\n".join(map(str, preview.splitlines()))
                     except: 
                         # 글 수정/삭제되었을 경우 오류 예외처리
                         img_preview = None
