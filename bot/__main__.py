@@ -3,6 +3,7 @@ import asyncio
 
 from discord.ext import commands
 from bot.background.read_ce import read_ce
+from bot.background.read_ai import read_ai
 from bot.background.broadcast_ce import broadcast_ce
 from bot.background.broadcast_ai import broadcast_ai
 from bot.background.read_kumoh import read_kumoh
@@ -75,6 +76,7 @@ background_list = {
     "broadcast_ai": True,
     "broadcast_kumoh": True,
     "broadcast_biskit": True,
+    "read_ai": False,
     "read_ce": False,
     "read_kumoh": False,
     "read_biskit": False,

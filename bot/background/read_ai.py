@@ -9,13 +9,13 @@ from bot.utils.crawler import getText
 from bot.utils.database import aiBoardDB
 from bot import ai_board_link, LOGGER
 
-async def read_ce():
-    """ CE게시판 새 글 읽기 """
-    ce_link = ai_board_link
+async def read_ai():
+    """ AI게시판 새 글 읽기 """
+    ai_link = ai_board_link
     while True:
         try:
             header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
-            result = getText(ce_link, header)
+            result = getText(ai_link, header)
 
             soup = BeautifulSoup(result, 'html.parser')
             content_li = []
@@ -23,7 +23,7 @@ async def read_ce():
                 # 클래스가 notice 가 아닐 경우
                 # if i["class"] != ["notice"]: # 공지사항도 읽도록 수정
                 # 링크 가져오기
-                post_link = ce_link + i.find("td", {"class": "title left"}).find("a")["href"]
+                post_link = ai_link + i.find("td", {"class": "title left"}).find("a")["href"]
 
                 # 링크에서 글 번호 가져오기
                 post_num = re.search(r"&articleNo=([0-9]+)&", post_link)
