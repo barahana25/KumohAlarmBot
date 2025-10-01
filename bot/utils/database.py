@@ -12,13 +12,14 @@ from bot import db_path, channel_db_path, KumohSquarePage
 class ceBoardDB():
     def __init__(self):
         self.db_path = db_path
+        self.board_name = "ceboard"
 
     def set_database(self, tr_list: list) -> None:
         """ 데이터베이스에 데이터 추가 """
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         # Create table if it doesn't exist
-        cur.execute(f"CREATE TABLE IF NOT EXISTS ceboard (id integer PRIMARY KEY AUTOINCREMENT, articleNo int, title text, author text)")
+        cur.execute(f"CREATE TABLE IF NOT EXISTS {self.board_name} (id integer PRIMARY KEY AUTOINCREMENT, articleNo int, title text, author text)")
 
         # add se board data
         for tr in tr_list:
@@ -27,12 +28,12 @@ class ceBoardDB():
             author = tr[2]
             
             try:
-                cur.execute("SELECT * FROM ceboard WHERE articleNo=:Id", {"Id": board_id})
+                cur.execute(f"SELECT * FROM {self.board_name} WHERE articleNo=:Id", {"Id": board_id})
                 temp = cur.fetchone()
             except:
                 temp = None
             if temp is None:
-                cur.execute(f"INSERT INTO ceboard (articleNo, title, author) VALUES(?, ?, ?)", (board_id, title, author))
+                cur.execute(f"INSERT INTO {self.board_name} (articleNo, title, author) VALUES(?, ?, ?)", (board_id, title, author))
         con.close()
 
     def get_database(self) -> list | None:
@@ -40,7 +41,7 @@ class ceBoardDB():
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         try:
-            cur.execute(f"SELECT * FROM ceboard ORDER BY id")
+            cur.execute(f"SELECT * FROM {self.board_name} ORDER BY id")
         except:
             con.close()
             return None
@@ -53,7 +54,7 @@ class ceBoardDB():
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         try:
-            cur.execute("SELECT * FROM ceboard WHERE id=:Id", {"Id": id})
+            cur.execute(f"SELECT * FROM {self.board_name} WHERE id=:Id", {"Id": id})
         except sqlite3.OperationalError:
             con.close()
             return None
@@ -72,13 +73,14 @@ class ceBoardDB():
 class aiBoardDB():
     def __init__(self):
         self.db_path = db_path
+        self.board_name = "aiboard"
 
     def set_database(self, tr_list: list) -> None:
         """ 데이터베이스에 데이터 추가 """
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         # Create table if it doesn't exist
-        cur.execute(f"CREATE TABLE IF NOT EXISTS aiboard (id integer PRIMARY KEY AUTOINCREMENT, articleNo int, title text, author text)")
+        cur.execute(f"CREATE TABLE IF NOT EXISTS {self.board_name} (id integer PRIMARY KEY AUTOINCREMENT, articleNo int, title text, author text)")
 
         # add se board data
         for tr in tr_list:
@@ -87,12 +89,12 @@ class aiBoardDB():
             author = tr[2]
             
             try:
-                cur.execute("SELECT * FROM aiboard WHERE articleNo=:Id", {"Id": board_id})
+                cur.execute(f"SELECT * FROM {self.board_name} WHERE articleNo=:Id", {"Id": board_id})
                 temp = cur.fetchone()
             except:
                 temp = None
             if temp is None:
-                cur.execute(f"INSERT INTO aiboard (articleNo, title, author) VALUES(?, ?, ?)", (board_id, title, author))
+                cur.execute(f"INSERT INTO {self.board_name} (articleNo, title, author) VALUES(?, ?, ?)", (board_id, title, author))
         con.close()
 
     def get_database(self) -> list | None:
@@ -100,7 +102,7 @@ class aiBoardDB():
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         try:
-            cur.execute(f"SELECT * FROM aiboard ORDER BY id")
+            cur.execute(f"SELECT * FROM {self.board_name} ORDER BY id")
         except:
             con.close()
             return None
@@ -113,7 +115,7 @@ class aiBoardDB():
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         try:
-            cur.execute("SELECT * FROM aiboard WHERE id=:Id", {"Id": id})
+            cur.execute(f"SELECT * FROM {self.board_name} WHERE id=:Id", {"Id": id})
         except sqlite3.OperationalError:
             con.close()
             return None
@@ -215,13 +217,14 @@ class BiskitDB():
         # 기존 DB에 테이블 얹어서 사용
         # id, postid, link, category, title, author
         self.db_path = db_path
+        self.board_name = "biskit"
 
     def set_database(self, tr_list: list) -> None:
         """ 데이터베이스에 데이터 추가 """
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         # 테이블 없으면 생성
-        cur.execute(f"""CREATE TABLE IF NOT EXISTS biskit (id integer PRIMARY KEY AUTOINCREMENT, 
+        cur.execute(f"""CREATE TABLE IF NOT EXISTS {self.board_name} (id integer PRIMARY KEY AUTOINCREMENT, 
                                                                 postid int,
                                                                 title text,
                                                                 org text)
@@ -236,13 +239,13 @@ class BiskitDB():
             title = title.replace("'", "''")
             
             try:
-                cur.execute(f"SELECT * FROM biskit WHERE postid=:Id", {"Id": post_id})
+                cur.execute(f"SELECT * FROM {self.board_name} WHERE postid=:Id", {"Id": post_id})
                 temp = cur.fetchone()
             except:
                 temp = None
             # 데이터베이스에 없으면 추가
             if temp is None:
-                cur.execute(f"INSERT INTO biskit (postid, title, org) VALUES(?, ?, ?)", (post_id, title, org))
+                cur.execute(f"INSERT INTO {self.board_name} (postid, title, org) VALUES(?, ?, ?)", (post_id, title, org))
         con.close()
 
     def get_database(self, table: str) -> list | None:
@@ -263,7 +266,7 @@ class BiskitDB():
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         try:
-            cur.execute(f"SELECT * FROM biskit WHERE id=:Id", {"Id": id})
+            cur.execute(f"SELECT * FROM {self.board_name} WHERE id=:Id", {"Id": id})
         except sqlite3.OperationalError:
             con.close()
             return None
