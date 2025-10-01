@@ -99,7 +99,7 @@ python3 -m bot
 ---
 
 ## 참고: 디스코드 서버
-- 공식 서버 링크: [https://discord.gg/KzHbSzJj](https://discord.gg/KzHbSzJj)
+- 공식 서버 링크: [https://discord.gg/RzKguFpJ5D](https://discord.gg/RzKguFpJ5D)
 
 ---
 
