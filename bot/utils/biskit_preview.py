@@ -337,35 +337,6 @@ def biskit_login():
 
     return biskit_Cookie
 
-
-# url = "https://biskit.kumoh.ac.kr/ptfol/imng/icmpNsbjtPgm/findIcmpNsbjtPgmInfo.do?encSddpbSeq=31303033303938"
-
-# headers = {
-# 'Host': 'biskit.kumoh.ac.kr',
-# 'Cookie': biskit_Cookie,
-# 'Sec-Ch-Ua': '"Chromium";v="127", "Not)A;Brand";v="99"',
-# 'Sec-Ch-Ua-Mobile': '?0',
-# 'Sec-Ch-Ua-Platform': '"Windows"',
-# 'Accept-Language': 'ko-KR',
-# 'Upgrade-Insecure-Requests': '1',
-# 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.6533.100 Safari/537.36',
-# 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-# 'Sec-Fetch-Site': 'same-origin',
-# 'Sec-Fetch-Mode': 'navigate',
-# 'Sec-Fetch-User': '?1',
-# 'Sec-Fetch-Dest': 'document',
-# 'Referer': 'https://biskit.kumoh.ac.kr/index.do',
-# 'Accept-Encoding': 'gzip, deflate, br',
-# 'Priority': 'u=0, i',
-# 'Connection': 'keep-alive',
-# }
-
-# res = requests.get(url, headers=headers)
-# soup = BeautifulSoup(res.text, 'html.parser')
-
-# for i in soup.find('div', {'class': 'table_wrap'}).find('tbody').find_all('tr'):
-#     print(i.text)
-
 async def get_preview(post_id: int) -> tuple:
     biskit_Cookie = biskit_login()
     header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko',
@@ -423,7 +394,10 @@ async def get_preview(post_id: int) -> tuple:
             period = i.find('td').text.strip().replace(r'\xa0', ' ')
 
         elif i.find('th').text.strip() == "수료 인증서":
-            mileage = int(i.find_all('td')[1].text.strip())
+            try:
+                mileage = int(i.find_all('td')[1].text.strip())
+            except:
+                mileage = 0
             
     post = (0, post_id, title, author, org, category, period, mileage)
     return post, img_preview_base64, result
