@@ -46,7 +46,7 @@ async def broadcast_kumoh(bot):
                         preview_text = None
                         try:
                             img_preview, preview_text = await get_ks_preview(link)
-                            preview_text = "\n".join(map(str, preview_text.splitlines()))
+                            # preview_text = "\n".join(map(str, preview_text.splitlines()))
                         except:
                             print(traceback.format_exc())
 

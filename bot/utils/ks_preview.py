@@ -1,6 +1,9 @@
 from bs4 import BeautifulSoup
 
-from bot.utils.crawler import getText
+try:
+    from bot.utils.crawler import getText
+except:
+    from crawler import getText
 
 async def get_ks_preview(link: str) -> tuple:
     header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
@@ -15,10 +18,13 @@ async def get_ks_preview(link: str) -> tuple:
 
     if post is not None:
         # 텍스트 프리뷰
-        post_text = post.get_text(separator='\n', strip=True)
-        text = ''
-        # for i in post_text:
-        #     text += i.getText() + "\n" 
+        post_text = []
+        for p in post.find_all('p'):
+            text = p.get_text(" ", strip=True)
+            if text and len(text) > 5:
+                post_text.append(text)
+        post_text = "\n".join(post_text)
+        
         text = post_text
         
         if len(text) <= 100:
@@ -42,5 +48,5 @@ async def get_ks_preview(link: str) -> tuple:
 
 if __name__ == "__main__":
     import asyncio
-    test_link = "https://www.kumoh.ac.kr/ko/sub06_01_01_01.do?mode=view&articleNo=538397&article.offset=0&articleLimit=10"
+    test_link = "https://www.kumoh.ac.kr/ko/sub06_01_01_01.do?mode=view&articleNo=542941&article.offset=0&articleLimit=10"
     print(asyncio.run(get_ks_preview(test_link)))
