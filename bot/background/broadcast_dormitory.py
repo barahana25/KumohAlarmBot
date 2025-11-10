@@ -16,11 +16,14 @@ async def broadcast_dorm_food(bot) -> None:
         "Orum1": "https://dorm.kumoh.ac.kr/dorm/restaurant_menu02.do",
         "Orum23": "https://dorm.kumoh.ac.kr/dorm/restaurant_menu03.do"
     }
-
+    links_copy = links.copy()
+    is_not_noticed = {}
     while True:
         # 매일 7시에 메뉴 전송
-        if datetime.now().hour == 7 and datetime.now().minute == 0:
-            for dorm in links:
+        if (datetime.now().hour == 7 and datetime.now().minute == 0) or is_not_noticed:
+            if is_not_noticed:
+                links = {dorm: links[dorm] for dorm in is_not_noticed}
+            for dorm in links:                    
                 dt = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
                 result = getText(links[dorm] + "?mode=menuList&srDt=" + dt, header)
                 parse = BeautifulSoup(result, 'lxml')
@@ -30,8 +33,14 @@ async def broadcast_dorm_food(bot) -> None:
                 for i in box.find("tbody").find_all("tr"):
                     menu = i.find_all("td")[datetime.now().weekday()].getText().strip().split("\n")
                     today_menu_list.append([menu[0], '\n'.join(menu[1:]).strip()])
-
+                if today_menu_list == []:
+                    is_not_noticed[dorm] = True
+                    continue
+                if dorm in is_not_noticed:
+                    del is_not_noticed[dorm]
+                    
                 await send_dorm_food(bot, dorm, today_menu_list)
+            links = links_copy
         await asyncio.sleep(60)
 
 async def send_dorm_food(bot, dorm, today_menu: list) -> None:
