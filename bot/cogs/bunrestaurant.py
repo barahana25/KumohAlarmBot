@@ -19,11 +19,11 @@ class BunRestaurant(commands.Cog):
         a = datetime.datetime.today().weekday()
 
         header = {'User-Agent': 'Mozilla/5.0(Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
-        result = getText(self.bun_restaurant, header)
+        result = await getText(self.bun_restaurant, header)
         parse = BeautifulSoup(result, 'lxml')
         menus = parse.find("div", {"class": "menu-list-box"}).find("tbody").find_all("td")
 
-        embed=discord.Embed(title="**오늘의 분식당 메뉴**", description=menus[a].getText(), color=color_code)
+        embed=discord.Embed(title="**오늘의 분식당 메뉴**", description=await menus[a].getText(), color=color_code)
         # embed.set_footer(text=BOT_NAME_TAG_VER)
         return await interaction.response.send_message(embed=embed)
 

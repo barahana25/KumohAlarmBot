@@ -16,13 +16,13 @@ async def broadcast_faculty_cafeteria(bot) -> None:
     while True:
         if datetime.now().weekday() <= 4: # 월 ~ 금
             if datetime.now().hour == 7 and datetime.now().minute == 0:
-                result = getText(link, header)
+                result = await getText(link, header)
                 parse = BeautifulSoup(result, 'lxml')
                 box = parse.find("div", {"class": "menu-list-box"})
 
                 today_menu_list = []
                 for i in box.find("tbody").find_all("tr"):
-                    menu = i.find_all("td")[datetime.now().weekday()].getText().strip().split("\n")
+                    menu = await i.find_all("td")[datetime.now().weekday()].getText().strip().split("\n")
                     today_menu_list.append([menu[0], '\n'.join(menu[1:]).strip()])
 
                 await send_faculty_cafeteria(bot, today_menu_list)

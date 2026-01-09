@@ -25,13 +25,13 @@ async def broadcast_dorm_food(bot) -> None:
                 links = {dorm: links[dorm] for dorm in is_not_noticed}
             for dorm in links:                    
                 dt = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-                result = getText(links[dorm] + "?mode=menuList&srDt=" + dt, header)
+                result = await getText(links[dorm] + "?mode=menuList&srDt=" + dt, header)
                 parse = BeautifulSoup(result, 'lxml')
                 box = parse.find("table", {"class": "smu-table"})
 
                 today_menu_list = []
                 for i in box.find("tbody").find_all("tr"):
-                    menu = i.find_all("td")[datetime.now().weekday()].getText().strip().split("\n")
+                    menu = await i.find_all("td")[datetime.now().weekday()].getText().strip().split("\n")
                     today_menu_list.append([menu[0], '\n'.join(menu[1:]).strip()])
                 if today_menu_list == []:
                     is_not_noticed[dorm] = True
