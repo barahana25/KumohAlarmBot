@@ -22,7 +22,7 @@ async def broadcast_hagsigdang(bot) -> None:
 
                 today_menu_list = []
                 for i in box.find("tbody").find_all("tr"):
-                    menu = i.find_all("td")[datetime.now().weekday()].getText().strip().split("\n")
+                    menu = i.find_all("td")[datetime.now().weekday()].get_text().strip().split("\n")
                     today_menu_list.append([menu[0], '\n'.join(menu[1:]).strip()])
 
                 await send_hagsigdang(bot, today_menu_list)
@@ -30,6 +30,11 @@ async def broadcast_hagsigdang(bot) -> None:
 
 async def send_hagsigdang(bot, today_menu: list) -> None:
     """ 학생식당 메뉴 전송 """
+    
+    # 데이터 없으면 안보냄
+    if len(today_menu) <= 0:
+        return
+
     # 채널 아이디 리스트 가져오기
     channel_id_list = channelDataDB().get_on_channel("Hagsigdang")
     if channel_id_list is not None and today_menu is not None:
@@ -43,7 +48,7 @@ async def send_hagsigdang(bot, today_menu: list) -> None:
                     menu_title, menu_content = menu
                     embed.add_field(name=menu_title, value=menu_content, inline=True)
 
-                # embed.set_footer(text=BOT_NAME_TAG_VER)
+                embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
 
             except Exception:
