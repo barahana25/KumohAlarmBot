@@ -43,7 +43,8 @@ async def getText(url: str, header: dict | None = None):
             # timeout 설정을 통해 무한 대기 방지 (30초)
             async with session.get(url, timeout=30) as response:
                 if response.status == 200:
-                    return await response.text()
+                    text = await response.text()
+                    return text
                 else:
                     print(f"HTTP Error: {response.status}")
                     return None
