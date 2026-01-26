@@ -16,6 +16,10 @@ async def read_ai():
         try:
             header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
             result = await getText(ai_link, header)
+            if result is None:
+                print(f"[{i.name}] 데이터를 가져오지 못해 스킵합니다.")
+                await asyncio.sleep(30)
+                continue
 
             soup = BeautifulSoup(result, 'html.parser')
             content_li = []

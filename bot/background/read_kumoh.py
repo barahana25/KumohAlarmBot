@@ -1,11 +1,13 @@
 import re
 import asyncio
 import traceback
+import time
 from bs4 import BeautifulSoup
 
 from bot.utils.crawler import getText
 from bot.utils.database import KumohSquareDB
 from bot import kumoh_square_link, LOGGER, KumohSquarePage
+
 
 async def read_kumoh():
     """ 금오광장 새 글 읽기 """
@@ -16,6 +18,11 @@ async def read_kumoh():
                 # 링크 생성
                 link = kumoh_square_link + i.value
                 result = await getText(link, header)
+                # --- 수정 부분: result가 None인지 먼저 확인 ---
+                if result is None:
+                    print(f"[{i.name}] 데이터를 가져오지 못해 스킵합니다.")
+                    await asyncio.sleep(30)
+                    continue
 
                 parse = BeautifulSoup(result, 'lxml')
                 trs = parse.find("div", {"class": "board-list01"})

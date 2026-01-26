@@ -78,7 +78,9 @@ async def send_msg(bot, table_name: str, post: tuple, preview: (str | None), img
                     embed.add_field(name="미리보기", value=preview, inline=False)
                 # 이미지 미리보기가 있을 경우
                 if img_preview:
-                    embed.set_image(url=img_preview)
+                    print("image_url:", img_preview)
+                    if img_preview.startswith("http"):
+                        embed.set_image(url=img_preview)
 
                 # embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)

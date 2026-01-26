@@ -22,7 +22,7 @@ async def broadcast_hagsigdang(bot) -> None:
 
                 today_menu_list = []
                 for i in box.find("tbody").find_all("tr"):
-                    menu = await i.find_all("td")[datetime.now().weekday()].getText().strip().split("\n")
+                    menu = i.find_all("td")[datetime.now().weekday()].getText().strip().split("\n")
                     today_menu_list.append([menu[0], '\n'.join(menu[1:]).strip()])
 
                 await send_hagsigdang(bot, today_menu_list)
